@@ -57,6 +57,8 @@
     
       <link rel="stylesheet" href="stylesheets/focus.css">
     
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -459,17 +461,17 @@
 
 
 <h1 id="4-conclusao">4. <span style="color: #365f91">Conclusão</span></h1>
-<p>Vamos recapitular o que pretendíamos fazer. Queríamos construir a seguinte aplicação web MVC de três camadas:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000006F3000001EB3885D79F.png" width="680" height="188" style="display:inline-block; margin:4px;width:17.997cm;height:4.967cm;" class="odt-zoomable" data-zoom-src="images/10000000000006F3000001EB3885D79F.png" /></td></tr></table>
+<p>Recorde-se o que pretendíamos fazer. Pretendíamos construir a aplicação web MVC com as seguintes três camadas:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006F3000001EB3885D79F.png" width="680" height="188" style="display:inline-block; margin:4px;width:17.997cm;height:4.967cm;" class="odt-zoomable" data-zoom-src="images/10000000000006F3000001EB3885D79F.png" /></td></tr></table>
 
 <ul>
-  <li>O modelo já estava implementado. Foi utilizado de forma idêntica pelas três soluções propostas
+  <li>O modelo já estava definido. Foi utilizado de forma idêntica pelas três soluções propostas
   </li>
-  <li>, uma vez que a independência das camadas foi rigorosamente mantida, a camada [web] podia ser implementada de três formas diferentes sem afetar o modelo. Trabalhámos exclusivamente na camada [web].
+  <li>Como a independência das camadas foi escrupulosamente respeitada, a camada [web] pôde ser implementada de três formas diferentes sem alterar o modelo. Trabalhámos apenas na camada [web].
   </li>
-  <li>As soluções são semelhantes. Enquanto na primeira solução tínhamos um único servlet com um método por ação a tratar, nas outras duas soluções também temos um único servlet, mas desprovido dos métodos de tratamento de ações, sendo o tratamento agora assegurado por classes separadas. O papel destas classes era idêntico ao dos métodos na primeira solução.
+  <li>As soluções são semelhantes. Enquanto na primeira solução tínhamos um único servlet com um método por ação a tratar, nas outras duas soluções temos também um único servlet, mas sem os métodos de tratamento das ações, cujo tratamento é agora assegurado por classes separadas. O papel destas era idêntico ao dos métodos da primeira solução.
   </li>
-  <li>A utilização do [Spring] nesta aplicação permite-nos escolher as classes que implementam as interfaces Java das camadas [domain] e [dao]. Estas classes de implementação podem ser alteradas dentro de uma camada sem qualquer impacto nas outras camadas. Apenas o ficheiro de configuração do Spring precisaria de ser alterado. Assim, a camada [DAO], atualmente gerida pela ferramenta [sqlMap], poderia passar a ser gerida pela ferramenta [Hibernate]. Isto afetaria a camada [DAO], mas não teria qualquer impacto nas camadas [Web] e [Domain].
+  <li>A utilização de [Spring] nesta aplicação permite-nos escolher as classes de implementação das interfaces Java das camadas [domain] e [dao]. Estas classes de implementação poderiam ser alteradas numa camada, sem qualquer impacto nas outras camadas. Apenas o ficheiro de configuração do Spring teria de ser alterado. Assim, a camada [dao], aqui assegurada pela ferramenta [sqlMap], poderia ser assegurada pela ferramenta [Hibernate]. Isso afetaria a camada [dao], mas não afetaria de forma alguma as camadas [web] e [domain].
   </li>
 </ul>
 

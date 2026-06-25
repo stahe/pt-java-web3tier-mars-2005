@@ -57,6 +57,8 @@
     
       <link rel="stylesheet" href="stylesheets/focus.css">
     
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -404,7 +406,7 @@
   <a href="#22-injecao-de-dependencias-e-inversao-de-controlo" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2. Injeção de Dependências e Inversão de Controlo
+        2.2. Injeção de dependências e inversão de controlo
       
     </span>
   </a>
@@ -485,10 +487,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#242-a-camada-de-acesso-a-dados-dao" class="md-nav__link">
+  <a href="#242-a-camada-dao-de-acesso-aos-dados" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.4.2. A camada de acesso a dados DAO
+        2.4.2. A camada DAO de acesso aos dados
       
     </span>
   </a>
@@ -496,10 +498,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#243-a-camada-de-negocios" class="md-nav__link">
+  <a href="#243-a-camada-de-negocio" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.4.3. A camada de negócios
+        2.4.3. A camada de negócio
       
     </span>
   </a>
@@ -585,10 +587,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2465-spring-ficheiros-de-configuracao" class="md-nav__link">
+  <a href="#2465-os-ficheiros-de-configuracao-spring" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.4.6.5. [Spring] Ficheiros de configuração
+        2.4.6.5. Os ficheiros de configuração [Spring]
       
     </span>
   </a>
@@ -617,10 +619,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#25-conclusao" class="md-nav__link">
+  <a href="#25-conclusion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.5. Conclusão
+        2.5. Conclusion
       
     </span>
   </a>
@@ -734,16 +736,16 @@
 
 
 <h1 id="2-artigo-1-spring-ioc">2. <span style="color: #365f91">Artigo 1 - Spring IoC</span></h1>
-<p><strong>Objetivos deste documento</strong>:</p>
+<p><strong>Objetivos do documento</strong>:</p>
 <ul>
-<li>explorar as possibilidades de configuração e integração do framework Spring (http://www.springframework.org)</li>
-<li>definir e utilizar o conceito de IoC (Inversão de Controlo), também conhecido como Injeção de Dependências</li>
+<li>descobrir as possibilidades de configuração e integração do framework Spring (http://www.springframework.org)</li>
+<li>definir e utilizar o conceito de IoC (Inversão de Controlo), também designado por injeção de dependências (Dependency Injection)</li>
 </ul>
 <h2 id="21-configurar-uma-aplicacao-de-3-camadas-com-o-spring">2.1. <span style="color: #4f81bd">Configurar uma aplicação de 3 camadas com o Spring</span></h2>
-<p>Considere uma aplicação clássica de 3 camadas:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000006EA0000010B3D100DAD.png" width="680" height="103" style="display:inline-block; margin:4px;width:17.997cm;height:2.715cm;" class="odt-zoomable" data-zoom-src="images/10000000000006EA0000010B3D100DAD.png" /></td></tr></table>
+<p>Consideremos uma aplicação clássica de 3 camadas:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006EA0000010B3D100DAD.png" width="680" height="103" style="display:inline-block; margin:4px;width:17.997cm;height:2.715cm;" class="odt-zoomable" data-zoom-src="images/10000000000006EA0000010B3D100DAD.png" /></td></tr></table>
 
-<p>Vamos assumir que o acesso às camadas de negócios e DAO é controlado por interfaces Java:</p>
+<p>Partiremos do princípio de que o acesso às camadas de negócio e DAO é controlado por interfaces Java:</p>
 <ol>
 <li>a interface [IArticlesDao] para a camada de acesso aos dados</li>
 </ol>
@@ -752,7 +754,7 @@
   </li>
 </ol>
 
-<p>Na camada de acesso a dados, ou camada DAO (Data Access Object), é comum trabalhar com um SGBD e, portanto, com um controlador JDBC. Considere o esqueleto de uma classe que acede a uma tabela de artigos num SGBD:</p>
+<p>Na camada de acesso aos dados, ou camada DAO (Data Access Object), é frequente trabalhar com um SGBD e, por conseguinte, com um controlador JDBC. Consideremos o esboço de uma classe que acede a uma tabela de artigos num SGBD:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
@@ -778,7 +780,7 @@
 <span class="normal"><a href="#__codelineno-0-23">23</a></span>
 <span class="normal"><a href="#__codelineno-0-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ArticlesDaoPlainJdbc</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">IArticlesDao</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">     </span><span class="c1">// connection to data source</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">     </span><span class="c1">// ligação à fonte de dados</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">driverClassName</span><span class="o">=</span><span class="kc">null</span><span class="p">;</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="n">connexion</span><span class="o">=</span><span class="kc">null</span><span class="p">;</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
@@ -787,11 +789,11 @@
 <a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w"> </span><span class="p">....</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10"></a>
 <a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="w"> </span><span class="nf">getAllArticles</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">        </span><span class="c1">// the list of items is requested</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">        </span><span class="c1">// solicita-se a lista de artigos</span>
 <a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">             </span><span class="c1">// load the JDBC driver</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">             </span><span class="c1">// carregar o controlador JDBC</span>
 <a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">            </span><span class="n">Class</span><span class="p">.</span><span class="na">forName</span><span class="p">(</span><span class="n">driverClassName</span><span class="p">);</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">            </span><span class="c1">// create a connection to BD</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">            </span><span class="c1">// criação de uma ligação à BD</span>
 <a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">            </span><span class="n">connexion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DriverManager</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">pwd</span><span class="p">);</span>
 <a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">            </span><span class="p">...</span>
 <a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">SQLException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -801,23 +803,23 @@
 <a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="w">        </span><span class="p">}</span>
 <a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>Para realizar uma operação no SGBD, cada método requer um objeto [Connection] que representa a ligação à base de dados, através da qual os dados serão trocados entre a base de dados e o código Java. Para criar este objeto, são necessárias quatro informações:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+<p>Para realizar uma operação no SGBD, qualquer método necessita de um objeto [Connection] que represente a ligação à base de dados, através da qual transitarão as trocas de dados entre esta e o código Java. Para construir este objeto, são necessárias quatro informações:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>String driverClassName
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">o nome da classe do controlador JDBC do SGBD</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">o nome da classe do controlador JDBC do SGBD</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>String url
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">o URL JDBC da base de dados a utilizar</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">a URL JDBC da base de dados a utilizar</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>String user
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">as credenciais utilizadas para estabelecer a ligação</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div markdown="block">
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">a identidade com a qual se estabelece a ligação</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>String pwd
 </code></pre></div>
-</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">A palavra-passe para este nome de utilizador</div></td></tr></table>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">a palavra-passe dessa identidade</div></td></tr></table>
 
-<p>Como é que a nossa classe [ArticlesDaoPlainJdbc] anterior pode obter esta informação? Existem várias possibilidades:</p>
-<p><strong>Solução 1</strong> - a informação está codificada na classe:</p>
+<p>Como é que a nossa classe anterior [ArticlesDaoPlainJdbc] pode obter estas informações? Existem várias possibilidades:</p>
+<p><strong>solução 1</strong> — as informações estão codificadas de forma estática na classe:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
 <span class="normal"><a href="#__codelineno-5-2">2</a></span>
 <span class="normal"><a href="#__codelineno-5-3">3</a></span>
@@ -827,15 +829,15 @@
 <span class="normal"><a href="#__codelineno-5-7">7</a></span>
 <span class="normal"><a href="#__codelineno-5-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ArticlesDaoPlainJdbc</span><span class="w"> </span><span class="n">implements</span><span class="w"> </span><span class="n">IArticlesDao</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2"></a>
-<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">     </span><span class="c1">// connection to data source</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">     </span><span class="c1">// ligação à fonte de dados</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">driverClassName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;org.firebirdsql.jdbc.FBDriver&quot;</span><span class="p">;</span>
 <a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;jdbc:firebirdsql:localhost/3050:d:/databases/dbarticles.gdb&quot;</span><span class="p">;</span>
 <a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;someone&quot;</span><span class="p">;</span>
 <a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">pwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;somepassword&quot;</span><span class="p">;</span>
 <a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w"> </span><span class="p">....</span>
 </code></pre></div></td></tr></table></div>
-<p>A desvantagem desta solução é que é necessário modificar o código Java sempre que alguma destas informações for alterada, como por exemplo, quando a palavra-passe for alterada.</p>
-<p><strong>Solução 2</strong> — a informação é passada para o objeto durante a sua construção:</p>
+<p>A desvantagem desta solução é que é necessário alterar o código Java sempre que se verifique uma alteração nestas informações, por exemplo, a alteração da palavra-passe.</p>
+<p><strong>Solução 2</strong> — as informações são transmitidas ao objeto durante a sua criação:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
@@ -852,7 +854,7 @@
 <span class="normal"><a href="#__codelineno-6-14">14</a></span>
 <span class="normal"><a href="#__codelineno-6-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ArticlesDaoPlainJdbc</span><span class="w"> </span><span class="n">implements</span><span class="w"> </span><span class="n">IArticlesDao</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2"></a>
-<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">     </span><span class="c1">// connection to data source</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">     </span><span class="c1">// ligação à fonte de dados</span>
 <a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">driverClassName</span><span class="p">;</span>
 <a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="p">;</span>
 <a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">user</span><span class="p">;</span>
@@ -866,8 +868,8 @@
 <a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="w">    </span><span class="p">...</span>
 <a id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>Aqui, o objeto recebe as informações necessárias para funcionar no momento em que é criado. O problema passa então para o código que lhe forneceu essas quatro informações. Como é que as obteve? A seguinte classe [ArticlesManagerWithDataBase], na camada de negócios, poderia criar um objeto [ArticlesDaoPlainJdbc] a partir da camada de acesso aos dados:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000574000000DCCE9FF2AB.png" width="680" height="107" style="display:inline-block; margin:4px;width:17.997cm;height:2.836cm;" class="odt-zoomable" data-zoom-src="images/1000000000000574000000DCCE9FF2AB.png" /></td></tr></table>
+<p>Aqui, o objeto recebe, aquando da sua construção, as informações de que necessita para funcionar. O problema passa então para o código que lhe transmitiu as quatro informações. Como é que as obteve? A seguinte classe [ArticlesManagerWithDataBase] da camada de negócio poderia construir um objeto [ArticlesDaoPlainJdbc] da camada de acesso aos dados:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000574000000DCCE9FF2AB.png" width="680" height="107" style="display:inline-block; margin:4px;width:17.997cm;height:2.835cm;" class="odt-zoomable" data-zoom-src="images/1000000000000574000000DCCE9FF2AB.png" /></td></tr></table>
 
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
@@ -886,12 +888,12 @@
 <span class="normal"><a href="#__codelineno-7-15">15</a></span>
 <span class="normal"><a href="#__codelineno-7-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ArticlesManagerWithDataBase</span><span class="w"> </span><span class="n">implements</span><span class="w"> </span><span class="n">IArticlesManager</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2"></a>
-<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="c1">// a data access instance</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="c1">// uma instância de acesso aos dados</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">IArticlesDao</span><span class="w"> </span><span class="n">articlesDao</span><span class="p">;</span>
 <a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w"> </span><span class="p">....</span>
 <a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="nf">ArticlesManagerWithDataBase</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">driverClassName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">pwd</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">        </span><span class="p">...</span><span class="w"> </span>
-<a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">         </span><span class="c1">// creation of a data access service</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">         </span><span class="c1">// criação do serviço de acesso aos dados</span>
 <a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="w">        </span><span class="n">articlesDao</span><span class="w"> </span><span class="o">=</span><span class="p">(</span><span class="n">IArticlesDao</span><span class="p">)</span><span class="k">new</span><span class="w"> </span><span class="n">ArticlesDaoPlainJdbc</span><span class="p">(</span><span class="n">driverClassName</span><span class="p">,</span><span class="n">url</span><span class="p">,</span><span class="n">user</span><span class="p">,</span><span class="n">pwd</span><span class="p">);</span>
 <a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">    </span><span class="p">...</span>
 <a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="w">    </span><span class="p">}</span>
@@ -901,8 +903,8 @@
 <a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>Podemos ver que, mais uma vez, a informação necessária para construir o objeto [ArticlesDaoPlainJdbc] é fornecida ao construtor do objeto [ArticlesManagerWithDataBase]. Podemos imaginar que esta informação lhe é passada por uma camada superior, como a camada da interface do utilizador. Chegamos assim gradualmente à camada mais alta da aplicação. Devido à sua posição, esta camada não é chamada por uma camada que lhe possa passar as informações de configuração de que necessita. Temos, portanto, de encontrar uma alternativa à configuração baseada no construtor. A abordagem padrão para configurar uma aplicação na sua camada mais elevada consiste em utilizar um ficheiro que contenha todas as informações suscetíveis de alteração ao longo do tempo. Poderá haver vários ficheiros deste tipo. Aquando do arranque da aplicação, uma camada de inicialização criará então a totalidade ou parte dos objetos necessários às várias camadas da aplicação.</p>
-<p>Existe uma grande variedade de ficheiros de configuração. A tendência atual é utilizar ficheiros XML. Esta é a abordagem adotada pelo Spring. O ficheiro que configura um objeto [ArticlesDaoPlainJdbc] pode ter o seguinte aspeto:</p>
+<p>Vemos que, mais uma vez, as informações necessárias para a construção do objeto [ArticlesDaoPlainJdbc] são fornecidas ao construtor do objeto [ArticlesManagerWithDataBase]. Podemos imaginar que estas lhe são transmitidas por uma camada superior, como a camada de interface com o utilizador. Chega-se assim, passo a passo, à camada mais elevada da aplicação. Devido à sua posição, esta não é chamada por uma camada que lhe possa transmitir as informações de configuração de que necessita. É, portanto, necessário encontrar uma solução alternativa à configuração por construtor. A solução habitual para configurar uma aplicação ao nível da sua camada mais elevada consiste na utilização de um ficheiro onde se encontram todas as informações suscetíveis de sofrer alterações ao longo do tempo. Podem existir vários ficheiros deste tipo. No arranque da aplicação, uma camada de inicialização irá então criar a totalidade ou parte dos objetos necessários às diferentes camadas da aplicação.</p>
+<p>Existe uma grande variedade de ficheiros de configuração. A tendência atual é utilizar ficheiros XML. Esta é a opção adotada pelo Spring. O ficheiro que configura um objeto [ArticlesDaoPlainJdbc] poderia ser o seguinte:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
@@ -924,7 +926,7 @@
 <span class="normal"><a href="#__codelineno-8-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="cp">&lt;!DOCTYPE beans SYSTEM &quot;http://www.springframework.org/dtd/spring-beans.dtd&quot;&gt;</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="nt">&lt;beans&gt;</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">     </span><span class="cm">&lt;!-- data access class --&gt;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">     </span><span class="cm">&lt;!-- a classe de acesso aos dados --&gt;</span>
 <a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">    </span><span class="nt">&lt;bean</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;articlesDao&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;istia.st.articles.dao.ArticlesDaoPlainJdbc&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">        </span><span class="nt">&lt;constructor-arg</span><span class="w"> </span><span class="na">index=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">            </span><span class="nt">&lt;value&gt;</span>org.firebirdsql.jdbc.FBDriver<span class="nt">&lt;/value&gt;</span>
@@ -941,11 +943,11 @@
 <a id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="w">    </span><span class="nt">&lt;/bean&gt;</span>
 <a id="__codelineno-8-19" name="__codelineno-8-19"></a><span class="nt">&lt;/beans&gt;</span>
 </code></pre></div></td></tr></table></div>
-<p>Uma aplicação é um conjunto de objetos que o Spring denomina <strong>beans</strong>, porque seguem o padrão JavaBean para nomear acessadores e inicializadores (getters/setters) dos campos privados de um objeto. Os objetos numa aplicação que servem um propósito específico são frequentemente criados como uma única instância. Estes são chamados <strong>de singletons</strong>. Assim, no nosso exemplo de aplicação multicamadas aqui discutido, o acesso à base de dados de artigos será tratado por uma única instância da classe [ArticlesDaoPlainJdbc]. Para uma aplicação web, estes objetos de serviço atendem a vários clientes ao mesmo tempo. Não é criado um objeto de serviço para cada cliente.</p>
-<p>O ficheiro de configuração Spring acima permite a criação de um único objeto de serviço do tipo [ArticlesDaoPlainJdbc] num pacote denominado [istia.st.articles.dao]. As quatro informações exigidas pelo construtor deste objeto são definidas dentro de uma tag <strong>&lt;bean&gt;...&lt;/bean&gt;</strong>. Haverá tantas tags <strong>&lt;bean&gt;</strong> quantos os singletons a serem criados.</p>
-<p>Quando é que os objetos definidos no ficheiro Spring serão criados? A inicialização da aplicação pode ser tratada pelo método <strong>main</strong> da aplicação, caso esta o possua. No caso de uma aplicação web, este pode ser o método [<strong>init</strong>] do servlet principal. Todas as aplicações possuem um método cuja execução é garantidamente a primeira a ocorrer. É geralmente dentro deste método que se realiza a criação dos singletons.</p>
-<p>Vejamos um exemplo. Suponhamos que queremos testar a classe [ArticlesDaoPlainJdbc] anterior utilizando um teste JUnit. Uma classe de teste JUnit possui um método [<strong>setUp</strong>] que é executado antes de qualquer outro método. É aqui que iremos criar o singleton [ArticlesDaoPlainJdbc].</p>
-<p>Se seguirmos a abordagem de passar informações de configuração através do construtor, teremos a seguinte classe de teste:</p>
+<p>Uma aplicação é um conjunto de objetos que o Spring denomina <strong>«beans»</strong>, porque seguem a norma JavaBean de nomenclatura dos acessadores e inicializadores (getters/setters) dos campos privados de um objeto. Os objetos que, numa aplicação, têm como função prestar um serviço são frequentemente criados numa única instância. Chamam-se <strong>singletons</strong>. Assim, no nosso exemplo de aplicação multicamadas aqui analisado, o acesso à base de dados de artigos será assegurado por uma única instância da classe [ArticlesDaoPlainJdbc]. Numa aplicação web, estes objetos de serviço atendem vários clientes ao mesmo tempo. Não se cria um objeto de serviço por cliente.</p>
+<p>O ficheiro de configuração do Spring acima permite criar um único objeto de serviço do tipo [ArticlesDaoPlainJdbc] num pacote denominado [istia.st.articles.dao]. As quatro informações necessárias ao construtor deste objeto estão definidas dentro de uma baliza <strong>&lt;bean&gt;...&lt;/bean&gt;</strong>. Haverá tantas balizas <strong>&lt;bean&gt;</strong> quantos os singletons a construir.</p>
+<p>Em que momento ocorre a criação dos objetos definidos no ficheiro Spring? A inicialização de uma aplicação pode ser atribuída ao método <strong>main</strong> dessa mesma aplicação, caso esta o possua. No caso de uma aplicação web, pode ser o método [init] do servlet principal. Em qualquer aplicação, existe um método que é garantidamente o primeiro a ser executado. É geralmente nesse método que ocorre a criação dos singletons.</p>
+<p>Vejamos um exemplo. Suponhamos que se pretenda testar a classe [ArticlesDaoPlainJdbc] acima referida, utilizando um teste JUnit. Uma classe de teste JUnit possui um método [setUp] que é executado antes de qualquer outro método. É aí que se criará o singleton [ArticlesDaoPlainJdbc].</p>
+<p>Se seguirmos a solução de passar as informações de configuração através do construtor, teremos a seguinte classe de teste:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
@@ -959,21 +961,21 @@
 <span class="normal"><a href="#__codelineno-9-11">11</a></span>
 <span class="normal"><a href="#__codelineno-9-12">12</a></span>
 <span class="normal"><a href="#__codelineno-9-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="n">public</span> <span class="k">class</span><span class="w"> </span><span class="nc">TestArticlesPlainJdbc</span> <span class="n">extends</span> <span class="n">TestCase</span> <span class="p">{</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2"></a>    <span class="o">//</span> <span class="n">tests</span> <span class="n">the</span> <span class="n">ArticlesDaoPlainJdbc</span> <span class="n">item</span> <span class="n">access</span> <span class="k">class</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">     </span><span class="err">// </span><span class="nc">the</span> <span class="n">data</span> <span class="n">source</span> <span class="ow">is</span> <span class="n">defined</span> <span class="ow">in</span> <span class="n">sprintest</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>    <span class="o">//</span> <span class="n">testa</span> <span class="n">a</span> <span class="n">classe</span> <span class="n">de</span> <span class="n">acesso</span> <span class="n">aos</span> <span class="n">artigos</span> <span class="n">ArticlesDaoPlainJdbc</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>     <span class="o">//</span> <span class="n">a</span> <span class="n">fonte</span> <span class="n">de</span> <span class="n">dados</span> <span class="n">está</span> <span class="n">definida</span> <span class="n">no</span> <span class="n">sprintest</span>
 <a id="__codelineno-9-4" name="__codelineno-9-4"></a>
-<a id="__codelineno-9-5" name="__codelineno-9-5"></a>     <span class="o">//</span> <span class="n">an</span> <span class="n">instance</span> <span class="n">of</span> <span class="n">the</span> <span class="k">class</span><span class="w"> </span><span class="nc">under</span> <span class="n">test</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>     <span class="o">//</span> <span class="n">uma</span> <span class="n">instância</span> <span class="n">da</span> <span class="n">classe</span> <span class="n">testada</span>
 <a id="__codelineno-9-6" name="__codelineno-9-6"></a>    <span class="n">private</span> <span class="n">IArticlesDao</span> <span class="n">articlesDao</span><span class="p">;</span>
 <a id="__codelineno-9-7" name="__codelineno-9-7"></a>
 <a id="__codelineno-9-8" name="__codelineno-9-8"></a>    <span class="n">protected</span> <span class="n">void</span> <span class="n">setUp</span><span class="p">()</span> <span class="n">throws</span> <span class="ne">Exception</span><span class="p">{</span>
-<a id="__codelineno-9-9" name="__codelineno-9-9"></a>        <span class="o">//</span> <span class="n">retrieves</span> <span class="n">a</span> <span class="n">data</span> <span class="n">access</span> <span class="n">instance</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a>        <span class="o">//</span> <span class="n">recupera</span> <span class="n">uma</span> <span class="n">instância</span> <span class="n">de</span> <span class="n">acesso</span> <span class="n">aos</span> <span class="n">dados</span>
 <a id="__codelineno-9-10" name="__codelineno-9-10"></a>        <span class="n">articlesDao</span> <span class="o">=</span>
 <a id="__codelineno-9-11" name="__codelineno-9-11"></a>            <span class="p">(</span><span class="n">IArticlesDao</span><span class="p">)</span> <span class="n">new</span> <span class="n">ArticlesDaoPlainJdbc</span><span class="p">(</span><span class="s2">&quot;org.firebirdsql.jdbc.FBDriver&quot;</span><span class="p">,</span>
 <a id="__codelineno-9-12" name="__codelineno-9-12"></a>                <span class="s2">&quot;jdbc:firebirdsql:localhost/3050:d:/databases/dbarticles.gdb&quot;</span><span class="p">,</span><span class="s2">&quot;someone&quot;</span><span class="p">,</span><span class="s2">&quot;somepassword&quot;</span><span class="p">);</span>
 <a id="__codelineno-9-13" name="__codelineno-9-13"></a>    <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>A classe de chamada [TestArticlesPlainJdbc] deve conhecer as quatro informações necessárias para inicializar o singleton [ArticlesDaoPlainJdbc] a ser construído. </p>
-<p>Se seguirmos a abordagem de passar informações de configuração através de um ficheiro de configuração, poderíamos ter a seguinte classe de teste utilizando o ficheiro Spring descrito acima.</p>
+<p>A classe de chamada [TestArticlesPlainJdbc] deve conhecer as quatro informações necessárias para a inicialização do singleton [ArticlesDaoPlainJdbc] a ser construído. </p>
+<p>Se seguirmos a solução de passagem das informações de configuração por ficheiro de configuração, poderíamos ter a seguinte classe de teste utilizando o ficheiro Spring descrito acima.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
@@ -986,47 +988,47 @@
 <span class="normal"><a href="#__codelineno-10-10">10</a></span>
 <span class="normal"><a href="#__codelineno-10-11">11</a></span>
 <span class="normal"><a href="#__codelineno-10-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="n">public</span> <span class="k">class</span><span class="w"> </span><span class="nc">TestSpringArticlesPlainJdbc</span> <span class="n">extends</span> <span class="n">TestCase</span> <span class="p">{</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2"></a>    <span class="o">//</span> <span class="n">tests</span> <span class="n">the</span> <span class="n">ArticlesDaoJdbc</span> <span class="n">item</span> <span class="n">access</span> <span class="k">class</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w">     </span><span class="err">// </span><span class="nc">the</span> <span class="n">data</span> <span class="n">source</span> <span class="ow">is</span> <span class="n">defined</span> <span class="ow">in</span> <span class="n">sprintest</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a>    <span class="o">//</span> <span class="n">testa</span> <span class="n">a</span> <span class="n">classe</span> <span class="n">de</span> <span class="n">acesso</span> <span class="n">aos</span> <span class="n">artigos</span> <span class="n">ArticlesDaoJdbc</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>     <span class="o">//</span> <span class="n">a</span> <span class="n">fonte</span> <span class="n">de</span> <span class="n">dados</span> <span class="n">está</span> <span class="n">definida</span> <span class="n">no</span> <span class="n">sprintest</span>
 <a id="__codelineno-10-4" name="__codelineno-10-4"></a>
-<a id="__codelineno-10-5" name="__codelineno-10-5"></a>     <span class="o">//</span> <span class="n">an</span> <span class="n">instance</span> <span class="n">of</span> <span class="n">the</span> <span class="k">class</span><span class="w"> </span><span class="nc">under</span> <span class="n">test</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a>     <span class="o">//</span> <span class="n">uma</span> <span class="n">instância</span> <span class="n">da</span> <span class="n">classe</span> <span class="n">testada</span>
 <a id="__codelineno-10-6" name="__codelineno-10-6"></a>    <span class="n">private</span> <span class="n">IArticlesDao</span> <span class="n">articlesDao</span><span class="p">;</span>
 <a id="__codelineno-10-7" name="__codelineno-10-7"></a>
 <a id="__codelineno-10-8" name="__codelineno-10-8"></a>    <span class="n">protected</span> <span class="n">void</span> <span class="n">setUp</span><span class="p">()</span> <span class="n">throws</span> <span class="ne">Exception</span> <span class="p">{</span>
-<a id="__codelineno-10-9" name="__codelineno-10-9"></a>      <span class="o">//</span> <span class="n">retrieves</span> <span class="n">a</span> <span class="n">data</span> <span class="n">access</span> <span class="n">instance</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a>      <span class="o">//</span> <span class="n">recupera</span> <span class="n">uma</span> <span class="n">instância</span> <span class="n">de</span> <span class="n">acesso</span> <span class="n">aos</span> <span class="n">dados</span>
 <a id="__codelineno-10-10" name="__codelineno-10-10"></a>      <span class="n">articlesDao</span> <span class="o">=</span> <span class="p">(</span><span class="n">IArticlesDao</span><span class="p">)</span> <span class="p">(</span><span class="n">new</span> <span class="n">XmlBeanFactory</span><span class="p">(</span><span class="n">new</span> <span class="n">ClassPathResource</span><span class="p">(</span>
 <a id="__codelineno-10-11" name="__codelineno-10-11"></a>          <span class="s2">&quot;springArticlesPlainJdbc.xml&quot;</span><span class="p">)))</span><span class="o">.</span><span class="n">getBean</span><span class="p">(</span><span class="s2">&quot;articlesDao&quot;</span><span class="p">);</span>
 <a id="__codelineno-10-12" name="__codelineno-10-12"></a>    <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>Aqui, a classe de chamada [TestSpringArticlesPlainJdbc] não precisa de saber as informações necessárias para inicializar o singleton a ser construído. Basta saber:</p>
+<p>Aqui, a classe de chamada [TestSpringArticlesPlainJdbc] não precisa de conhecer as informações necessárias para a inicialização do singleton a ser criado. Precisa apenas de conhecer:</p>
 <ol>
   <li>[springArticlesPlainJdbc.xml]: o nome do ficheiro de configuração Spring descrito acima
   </li>
-  <li>[articlesDao]: o nome do singleton a ser criado
+  <li>[articlesDao]: o nome do singleton a criar
   </li>
 </ol>
 
-<p>Uma modificação no ficheiro de configuração, fora destas duas entidades, não tem impacto no código Java. Este método de configurar os objetos de uma aplicação é muito flexível. Para se configurar, a aplicação precisa de saber apenas duas coisas:</p>
+<p>Uma alteração no ficheiro de configuração, fora destas duas entidades, não tem qualquer impacto no código Java. Este método de configuração dos objetos de uma aplicação é muito flexível. Para se configurar, a aplicação só precisa de saber duas coisas:</p>
 <ul>
-  <li>o nome do ficheiro Spring que contém as definições dos singletons a criar
+  <li>o nome do ficheiro Spring que contém a definição dos singletons a construir
   </li>
-  <li>os nomes desses singletons, que o código Java utiliza para obter uma referência aos objetos aos quais foram associados através do ficheiro de configuração
+  <li>os nomes desses singletons, que servem ao código Java para obter uma referência aos objetos aos quais foram associados através do ficheiro de configuração
   </li>
 </ul>
 
-<h2 id="22-injecao-de-dependencias-e-inversao-de-controlo">2.2. <span style="color: #4f81bd">Injeção de Dependências e Inversão de Controlo</span></h2>
-<p>Vamos agora apresentar o conceito <strong>de</strong> Injeção de Dependências utilizado pelo Spring para configurar aplicações. O termo <strong>Inversão de</strong> Controlo (IoC) também é utilizado. Considere a construção do singleton [ArticlesManagerWithDataBase] na camada de negócios da nossa aplicação:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000005AA0000011FE2C73955.png" width="680" height="135" style="display:inline-block; margin:4px;width:17.997cm;height:3.561cm;" class="odt-zoomable" data-zoom-src="images/10000000000005AA0000011FE2C73955.png" /></td></tr></table>
+<h2 id="22-injecao-de-dependencias-e-inversao-de-controlo">2.2. <span style="color: #4f81bd">Injeção de dependências e inversão de controlo</span></h2>
+<p>Vamos agora introduzir o conceito <strong>de injeção de dependências</strong> (Dependency Injection) utilizado pelo Spring para configurar as aplicações. Também se utiliza o termo <strong>inversão de controlo</strong> (IoC, Inversion of Control). Consideremos a criação do singleton [ArticlesManagerWithDataBase] da camada de negócio da nossa aplicação:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000005AA0000011FE2C73955.png" width="680" height="135" style="display:inline-block; margin:4px;width:17.997cm;height:3.561cm;" class="odt-zoomable" data-zoom-src="images/10000000000005AA0000011FE2C73955.png" /></td></tr></table>
 
-<p>Para aceder aos dados do SGBD, a camada de negócio deve utilizar os serviços de um objeto que implemente a interface [IArticlesDao], por exemplo, um objeto do tipo [ArticlesDaoPlainJdbc]. O código para a classe [ArticlesManagerWithDataBase] pode ser semelhante ao seguinte:</p>
+<p>Para aceder aos dados do SGBD, a camada de negócio deve utilizar os serviços de um objeto que implemente a interface [IArticlesDao], por exemplo, um objeto do tipo [ArticlesDaoPlainJdbc]. O código da classe [ArticlesManagerWithDataBase] poderia ser semelhante ao seguinte:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ArticlesManagerWithDataBase</span><span class="w"> </span><span class="n">implements</span><span class="w"> </span><span class="n">IArticlesManager</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">     </span><span class="c1">// a data access instance</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">     </span><span class="c1">// uma instância de acesso aos dados</span>
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">IArticlesDao</span><span class="w"> </span><span class="n">articlesDao</span><span class="p">;</span>
 <a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w"> </span><span class="p">....</span>
 <a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="nf">ArticlesManagerWithDataBase</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">driverClassName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">pwd</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">        </span><span class="p">...</span><span class="w"> </span>
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">         </span><span class="c1">// creation of a data access service</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">         </span><span class="c1">// criação do serviço de acesso aos dados</span>
 <a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">        </span><span class="n">articlesDao</span><span class="w"> </span><span class="o">=</span><span class="p">(</span><span class="n">IArticlesDao</span><span class="p">)</span><span class="k">new</span><span class="w"> </span><span class="n">ArticlesDaoPlainJdbc</span><span class="p">(</span><span class="n">driverClassName</span><span class="p">,</span><span class="n">url</span><span class="p">,</span><span class="n">user</span><span class="p">,</span><span class="n">pwd</span><span class="p">);</span>
 <a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">    </span><span class="p">...</span>
 <a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">    </span><span class="p">}</span>
@@ -1036,17 +1038,17 @@
 <a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="p">}</span>
 </code></pre></div>
-<p>A classe [ArticlesDaoPlainJdbc] deve implementar a interface [IArticlesDao] aqui:</p>
+<p>A classe [ArticlesDaoPlainJdbc] deve, neste caso, implementar uma interface [IArticlesDao]:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ArticlesDaoPlainJdbc</span><span class="w"> </span><span class="n">implements</span><span class="w"> </span><span class="n">IArticlesDao</span><span class="w"> </span><span class="p">{...}</span>
 </code></pre></div>
-<p>Para criar o singleton [IArticlesDao] necessário para que a classe funcione, o seu construtor utiliza explicitamente o nome da classe que implementa a interface [IArticlesDao]:</p>
+<p>Para criar o singleton do tipo [IArticlesDao] necessário ao funcionamento da classe, o construtor desta utiliza explicitamente o nome da classe de implementação da interface [IArticlesDao]:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>articlesDao =(IArticlesDao) new ArticlesDaoPlainJdbc(...);
 </code></pre></div>
-<p>Temos, portanto, uma <strong>dependência codificada no nome da classe no código</strong>. Se a classe que implementa a interface [IArticlesDao] fosse alterada, o código no construtor anterior <strong>teria de ser modificado</strong>. Temos as seguintes relações entre os objetos:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000059800000176CCEEEBCB.png" width="680" height="178" style="display:inline-block; margin:4px;width:17.997cm;height:4.701cm;" class="odt-zoomable" data-zoom-src="images/100000000000059800000176CCEEEBCB.png" /></td></tr></table>
+<p>Temos, portanto, uma <strong>dependência rígida no código em relação ao nome da classe</strong>. Se a classe de implementação da interface [IArticlesDao] viesse a mudar, o código do construtor anterior <strong>teria de ser alterado</strong>. Temos as seguintes relações entre os objetos:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000059800000176CCEEEBCB.png" width="680" height="178" style="display:inline-block; margin:4px;width:17.997cm;height:4.699cm;" class="odt-zoomable" data-zoom-src="images/100000000000059800000176CCEEEBCB.png" /></td></tr></table>
 
-<p>A própria classe [ArticlesManagerWithDataBase] toma a iniciativa de criar o objeto [ArticlesDaoPlainJdbc] de que necessita. Voltando ao termo «inversão de controlo», podemos dizer que é ela que detém o «controlo» para criar o objeto de que necessita.</p>
-<p>Se tivéssemos de escrever uma classe de teste JUnit para a classe [ArticlesManagerWithDataBase], poderia ficar mais ou menos assim:</p>
+<p>A classe [ArticlesManagerWithDataBase] toma ela própria a iniciativa de criar o objeto [ArticlesDaoPlainJdbc] de que necessita. Voltando ao termo «inversão de controlo», dir-se-á que é ela que tem o «controlo» para criar o objeto de que necessita.</p>
+<p>Se tivéssemos de escrever uma classe de teste JUnit para a classe [ArticlesManagerWithDataBase], poderíamos ter algo semelhante ao seguinte:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
@@ -1057,18 +1059,18 @@
 <span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
 <span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
 <span class="normal"><a href="#__codelineno-14-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">TestArticlesManagerWithDataBase</span><span class="w"> </span><span class="n">extends</span><span class="w"> </span><span class="n">TestCase</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="w">    </span><span class="c1">// an instance of the business class under test</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="w">    </span><span class="c1">// uma instância da classe de negócio testada</span>
 <a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">IArticlesManager</span><span class="w"> </span><span class="n">articlesManager</span><span class="p">;</span>
 <a id="__codelineno-14-4" name="__codelineno-14-4"></a>
 <a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="w">    </span><span class="k">protected</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">setUp</span><span class="p">()</span><span class="w"> </span><span class="n">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="w">        </span><span class="c1">// creates an instance of the business class under test</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="w">        </span><span class="c1">// cria uma instância da classe de negócio testada</span>
 <a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="w">        </span><span class="n">articlesManager</span><span class="w"> </span><span class="o">=</span>
 <a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="w">            </span><span class="p">(</span><span class="n">IArticlesManager</span><span class="p">)</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArticlesManagerWithDataBase</span><span class="p">(</span><span class="s">&quot;org.firebirdsql.jdbc.FBDriver&quot;</span><span class="p">,</span>
 <a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="w">                </span><span class="s">&quot;jdbc:firebirdsql:localhost/3050:d:/databases/dbarticles.gdb&quot;</span><span class="p">,</span><span class="s">&quot;someone&quot;</span><span class="p">,</span><span class="s">&quot;somepassword&quot;</span><span class="p">);</span>
 <a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>A classe de teste cria uma instância da classe de negócio [ArticlesManagerWithDataBase], que, por sua vez, cria uma instância da classe de acesso a dados [ArticlesDaoPlainJdbc] no seu construtor.</p>
-<p>A solução Spring elimina a necessidade de a classe de negócio [ArticlesManagerWithDataBase] conhecer o nome [ArticlesDaoPlainJdbc] da classe de acesso a dados de que necessita. Isto permite que a classe seja alterada sem modificar o código Java da classe de negócio. O Spring permite a criação simultânea de ambos os singletons: um para a camada de acesso a dados e outro para a camada de negócio. O ficheiro de configuração do Spring irá definir um novo bean:</p>
+<p>A classe de teste cria uma instância da classe de negócio [ArticlesManagerWithDataBase], que, por sua vez, cria, no seu construtor, uma instância da classe de acesso aos dados [ArticlesDaoPlainJdbc].</p>
+<p>A solução com o Spring eliminará a necessidade de a classe de negócio [ArticlesManagerWithDataBase] conhecer o nome [ArticlesDaoPlainJdbc] da classe de acesso aos dados de que necessita. Isto permitirá alterá-la sem alterar o código Java da classe de negócio. O Spring permitirá criar simultaneamente os dois singletons: o da camada de acesso aos dados e o da camada de negócios. O ficheiro de configuração do Spring definirá um novo bean:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
@@ -1095,7 +1097,7 @@
 <span class="normal"><a href="#__codelineno-15-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="cp">&lt;!DOCTYPE beans SYSTEM &quot;http://www.springframework.org/dtd/spring-beans.dtd&quot;&gt;</span>
 <a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="nt">&lt;beans&gt;</span>
-<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="w">     </span><span class="cm">&lt;!-- data access class --&gt;</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="w">     </span><span class="cm">&lt;!-- a classe de acesso aos dados --&gt;</span>
 <a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="w">    </span><span class="nt">&lt;bean</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;articlesDao&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;istia.st.articles.dao.ArticlesDaoPlainJdbc&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">        </span><span class="nt">&lt;constructor-arg</span><span class="w"> </span><span class="na">index=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="w">            </span><span class="nt">&lt;value&gt;</span>org.firebirdsql.jdbc.FBDriver<span class="nt">&lt;/value&gt;</span>
@@ -1117,7 +1119,7 @@
 <a id="__codelineno-15-23" name="__codelineno-15-23"></a><span class="w">    </span><span class="nt">&lt;/bean&gt;</span>
 <a id="__codelineno-15-24" name="__codelineno-15-24"></a><span class="nt">&lt;/beans&gt;</span>
 </code></pre></div></td></tr></table></div>
-<p>A nova funcionalidade é o bean que define o singleton da classe de negócio a ser criada:</p>
+<p>A novidade reside no bean que define o singleton da classe de negócio a criar:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>    &lt;bean id=&quot;articlesManager&quot; class=&quot;istia.st.articles.domain.ArticlesManagerWithDataBase&quot;&gt;
 <a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>        &lt;property name=&quot;articlesDao&quot;&gt;
 <a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>            &lt;ref bean=&quot;articlesDao&quot;/&gt;
@@ -1127,7 +1129,7 @@
 <ol>
   <li>A classe que implementa o bean [articlesManager] é definida: [ArticlesManagerWithDataBase]
   </li>
-  <li>Ao campo [articlesDao] do bean é atribuído um valor através da tag<b> &lt;property name=&quot;articlesDao&quot;&gt;</b>. Este é o campo definido na classe [ArticlesManagerWithDataBase]:
+  <li>o campo [articlesDao] do bean recebe um valor através da baliza <b>&lt;property name=&quot;articlesDao&quot;&gt;</b>. Trata-se do campo definido na classe [ArticlesManagerWithDataBase]:
   </li>
 </ol>
 
@@ -1144,7 +1146,7 @@
 <span class="normal"><a href="#__codelineno-17-11">11</a></span>
 <span class="normal"><a href="#__codelineno-17-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ArticlesManagerWithDataBase</span><span class="w"> </span><span class="n">implements</span><span class="w"> </span><span class="n">IArticlesManager</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2"></a>
-<a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="w">  </span><span class="c1">// data access interface</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="w">  </span><span class="c1">// interface de acesso aos dados</span>
 <a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="n">IArticlesDao</span><span class="w"> </span><span class="n">articlesDao</span><span class="p">;</span>
 <a id="__codelineno-17-5" name="__codelineno-17-5"></a>
 <a id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="w">  </span><span class="k">public</span><span class="w"> </span><span class="n">IArticlesDao</span><span class="w"> </span><span class="nf">getArticlesDao</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -1155,9 +1157,9 @@
 <a id="__codelineno-17-11" name="__codelineno-17-11"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">articlesDao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">articlesDao</span><span class="p">;</span>
 <a id="__codelineno-17-12" name="__codelineno-17-12"></a><span class="w">  </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>Para que o campo [articlesDao] seja inicializado pelo Spring e pela sua tag &lt;property&gt;, o campo deve seguir o padrão JavaBean e deve existir um método [setArticlesDao] para inicializar o campo [articlesDao]. Note que o nome do método deriva precisamente do nome do campo. Da mesma forma, existe frequentemente um método [get...] para recuperar o valor do campo. Aqui, trata-se do método [getArticlesDao]. Nesta nova versão, a classe [ArticlesManagerWithDataBase] <strong>já não possui um construtor</strong>. Já não necessita de um.</p>
+<p>Para que o campo [articlesDao] possa ser inicializado pelo Spring e pela sua baliza &lt;property&gt;, é necessário que o campo siga a norma JavaBean e que exista um método [setArticlesDao] para inicializar o campo [articlesDao]. Deve-se notar que o nome do método é derivado de forma muito precisa do nome do campo. Paralelamente, existe frequentemente um método [get...] para obter o valor do campo. Neste caso, trata-se do método [getArticlesDao]. Nesta nova versão, a classe [ArticlesManagerWithDataBase] <strong>já não possui um construtor</strong>. Já não precisa dele.</p>
 <ul>
-  <li>O valor que o Spring atribuirá ao campo [articlesDao] é o do bean [articlesDao] definido no seu ficheiro de configuração:
+  <li>O valor que será atribuído ao campo [articlesDao] pelo Spring é o do bean [articlesDao] definido no seu ficheiro de configuração:
   </li>
 </ul>
 
@@ -1173,19 +1175,19 @@
 <a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="o">&lt;</span><span class="err">/bean&gt;</span>
 </code></pre></div>
 <ul>
-  <li>Quando o Spring constrói o singleton [ArticlesManagerWithDataBase], também cria o singleton [ArticlesDaoPlainJdbc]:
+  <li>quando o Spring criar o singleton [ArticlesManagerWithDataBase], terá de criar também o singleton [ArticlesDaoPlainJdbc]:
     <ul>
-      <li>O Spring estabelecerá um gráfico de dependências dos beans e verificará que o bean [articlesManager] depende do bean [articlesDao]
+      <li>O Spring irá estabelecer um gráfico de dependências dos beans e verificará que o bean [articlesManager] depende do bean [articlesDao]
       </li>
-      <li>construirá o bean [articlesDao], ou seja, um objeto do tipo [ArticlesDaoPlainJdbc]
+      <li>irá criar o bean [articlesDao], ou seja, um objeto do tipo [ArticlesDaoPlainJdbc]
       </li>
-      <li>depois, irá construir o bean [articlesManager] do tipo [ArticlesManagerWithDataBase]
+      <li>depois, criará o bean [articlesManager] do tipo [ArticlesManagerWithDataBase]
       </li>
     </ul>
   </li>
 </ul>
 
-<p>Agora, imaginemos um teste JUnit para a classe [ArticlesManagerWithDataBase]. Pode ficar assim:</p>
+<p>Imaginemos agora um teste JUnit para a classe [ArticlesManagerWithDataBase]. Poderia ser semelhante ao seguinte:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-20-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-20-3"> 3</a></span>
@@ -1197,13 +1199,13 @@
 <span class="normal"><a href="#__codelineno-20-9"> 9</a></span>
 <span class="normal"><a href="#__codelineno-20-10">10</a></span>
 <span class="normal"><a href="#__codelineno-20-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">TestSpringArticlesManagerWithDataBase</span><span class="w"> </span><span class="n">extends</span><span class="w"> </span><span class="n">TestCase</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="w">    </span><span class="c1">// test business class [ArticlesManagerWithDataBase]</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="w">    </span><span class="c1">// testa a classe de negócio [ArticlesManagerWithDataBase]</span>
 <a id="__codelineno-20-3" name="__codelineno-20-3"></a>
-<a id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="w">    </span><span class="c1">// an instance of the business class under test</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="w">    </span><span class="c1">// uma instância da classe de negócio testada</span>
 <a id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="n">IArticlesManager</span><span class="w"> </span><span class="n">articlesManager</span><span class="p">;</span>
 <a id="__codelineno-20-6" name="__codelineno-20-6"></a>
 <a id="__codelineno-20-7" name="__codelineno-20-7"></a><span class="w">    </span><span class="k">protected</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">setUp</span><span class="p">()</span><span class="w"> </span><span class="n">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-20-8" name="__codelineno-20-8"></a><span class="w">      </span><span class="c1">// retrieves a data access instance</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8"></a><span class="w">      </span><span class="c1">// recupera uma instância de acesso aos dados</span>
 <a id="__codelineno-20-9" name="__codelineno-20-9"></a><span class="w">      </span><span class="n">articlesManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">IArticlesManager</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">XmlBeanFactory</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ClassPathResource</span><span class="p">(</span>
 <a id="__codelineno-20-10" name="__codelineno-20-10"></a><span class="w">          </span><span class="s">&quot;springArticlesManagerWithDataBase.xml&quot;</span><span class="p">))).</span><span class="n">getBean</span><span class="p">(</span><span class="s">&quot;articlesManager&quot;</span><span class="p">);</span>
 <a id="__codelineno-20-11" name="__codelineno-20-11"></a><span class="w">    </span><span class="p">}</span>
@@ -1212,18 +1214,18 @@
 <ul>
   <li>O método [setUp] acima solicita uma referência ao bean denominado [articlesManager]
   </li>
-  <li>O Spring consulta o seu ficheiro de configuração e encontra o bean [articlesManager]. Se este já tiver sido criado, simplesmente devolve uma referência ao objeto (singleton); caso contrário, cria-o.
+  <li>O Spring consulta o seu ficheiro de configuração e encontra o bean [articlesManager]. Se este já estiver criado, limita-se a devolver uma referência ao objeto (singleton); caso contrário, cria-o.
   </li>
-  <li>O Spring deteta a dependência do bean [articlesManager] em relação ao bean [articlesDao]. Por isso, cria o singleton [articlesDao] do tipo [ArticlesDaoPlainJdbc] se este ainda não tiver sido criado (como singleton).
+  <li>O Spring deteta a dependência do bean [articlesManager] em relação ao bean [articlesDao]. Assim, cria o singleton [articlesDao] do tipo [ArticlesDaoPlainJdbc], caso este ainda não tenha sido criado (singleton).
   </li>
   <li>Cria o singleton [articlesManager] do tipo [ArticlesManagerWithDataBase]
   </li>
 </ul>
 
-<p>Este mecanismo pode ser representado graficamente da seguinte forma:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000004C7000001DEC310E746.png" width="612" height="239" style="display:inline-block; margin:4px;width:16.18cm;height:6.324cm;" class="odt-zoomable" data-zoom-src="images/10000000000004C7000001DEC310E746.png" /></td></tr></table>
+<p>Este mecanismo poderia ser esquematizado da seguinte forma:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000004C7000001DEC310E746.png" width="612" height="239" style="display:inline-block; margin:4px;width:16.18cm;height:6.324cm;" class="odt-zoomable" data-zoom-src="images/10000000000004C7000001DEC310E746.png" /></td></tr></table>
 
-<p>Vamos relembrar a estrutura da classe [ArticlesManagerWithDataBase]:</p>
+<p>Recorde-se a estrutura da classe [ArticlesManagerWithDataBase]:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-21-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-21-3"> 3</a></span>
@@ -1237,7 +1239,7 @@
 <span class="normal"><a href="#__codelineno-21-11">11</a></span>
 <span class="normal"><a href="#__codelineno-21-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">ArticlesManagerWithDataBase</span><span class="w"> </span><span class="n">implements</span><span class="w"> </span><span class="n">IArticlesManager</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2"></a>
-<a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="w">  </span><span class="c1">// data access interface</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="w">  </span><span class="c1">// interface de acesso aos dados</span>
 <a id="__codelineno-21-4" name="__codelineno-21-4"></a><span class="w">  </span><span class="k">private</span><span class="w"> </span><span class="n">IArticlesDao</span><span class="w"> </span><span class="n">articlesDao</span><span class="p">;</span>
 <a id="__codelineno-21-5" name="__codelineno-21-5"></a>
 <a id="__codelineno-21-6" name="__codelineno-21-6"></a><span class="w">  </span><span class="k">public</span><span class="w"> </span><span class="n">IArticlesDao</span><span class="w"> </span><span class="nf">getArticlesDao</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -1248,8 +1250,8 @@
 <a id="__codelineno-21-11" name="__codelineno-21-11"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">articlesDao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">articlesDao</span><span class="p">;</span>
 <a id="__codelineno-21-12" name="__codelineno-21-12"></a><span class="w">  </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>Assim que o Spring terminar de construir os singletons, temos um objeto do tipo [ArticlesManagerWithDataBase] cujo campo [articlesDao] é inicializado sem que ele saiba como. Dizemos que injetamos uma dependência no objeto [ArticlesManagerWithDataBase]. Dizemos também que invertemos o controlo: já não é o objeto [ArticlesManagerWithDataBase] que toma a iniciativa de criar o objeto que implementa a interface [IArticlesDao] de que necessita; em vez disso, é a aplicação de nível superior (quando se inicializa) que se encarrega de criar todos os objetos de que necessita, gerindo as suas interdependências.</p>
-<p>A principal vantagem de configurar o singleton [ArticlesManagerWithDataBase] através de um ficheiro Spring é que agora podemos alterar a classe de implementação correspondente ao campo [articlesDao] da classe [ArticlesManagerWithDataBase] sem modificar o seu código. Basta alterar o nome da classe na definição do bean [articlesDao] no ficheiro Spring:</p>
+<p>No final da construção dos singletons pelo Spring, temos um objeto do tipo [ArticlesManagerWithDataBase] cujo campo [articlesDao] foi inicializado sem que ele saiba como. Diz-se que foi injetada uma dependência no objeto [ArticlesManagerWithDataBase]. Diz-se também que se inverteu o controlo: já não é o objeto [ArticlesManagerWithDataBase] que toma a iniciativa de criar ele próprio o objeto que implementa a interface [IArticlesDao] de que necessita, mas sim a aplicação ao nível mais elevado (quando se inicializa) que se encarrega de criar todos os objetos de que necessita, gerindo as dependências entre eles.</p>
+<p>A principal vantagem da configuração do singleton [ArticlesManagerWithDataBase] através de um ficheiro Spring é que, agora, é possível alterar a classe de implementação correspondente ao campo [articlesDao] da classe [ArticlesManagerWithDataBase] sem que o código desta última seja alterado. Basta alterar o nome da classe na definição do bean [articlesDao] no ficheiro Spring:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>    &lt;bean id=&quot;articlesDao&quot; class=&quot;istia.st.articles.dao.ArticlesDaoPlainJdbc&quot;&gt;
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>...
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    &lt;/bean&gt;
@@ -1259,10 +1261,10 @@
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>...
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>    &lt;/bean&gt;
 </code></pre></div>
-<p>O bean [ArticlesManagerWithDataBase] funcionará com esta nova classe de acesso a dados sem sequer se aperceber.</p>
+<p>O bean [ArticlesManagerWithDataBase] funcionará com esta nova classe de acesso aos dados, sem sequer se aperceber disso.</p>
 <h2 id="23-spring-ioc-na-pratica">2.3. <span style="color: #4f81bd">Spring IoC na prática</span></h2>
 <h3 id="231-exemplo-1">2.3.1. <span style="color: #4f81bd">Exemplo 1</span></h3>
-<p>Considere a seguinte classe:</p>
+<p>Consideremos a seguinte classe:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-24-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-24-3"> 3</a></span>
@@ -1305,12 +1307,12 @@
 <a id="__codelineno-24-4" name="__codelineno-24-4"></a><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nom</span><span class="p">;</span>
 <a id="__codelineno-24-5" name="__codelineno-24-5"></a><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
 <a id="__codelineno-24-6" name="__codelineno-24-6"></a>
-<a id="__codelineno-24-7" name="__codelineno-24-7"></a><span class="w">   </span><span class="c1">// person display</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7"></a><span class="w">   </span><span class="c1">// visualização de Pessoa</span>
 <a id="__codelineno-24-8" name="__codelineno-24-8"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-24-9" name="__codelineno-24-9"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;nom=[&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">nom</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;], age=[&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;]&quot;</span><span class="p">;</span>
 <a id="__codelineno-24-10" name="__codelineno-24-10"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-24-11" name="__codelineno-24-11"></a>
-<a id="__codelineno-24-12" name="__codelineno-24-12"></a><span class="w">   </span><span class="c1">// init-close</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12"></a><span class="w">   </span><span class="c1">// inicialização e encerramento</span>
 <a id="__codelineno-24-13" name="__codelineno-24-13"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-24-14" name="__codelineno-24-14"></a><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;init personne [&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;]&quot;</span><span class="p">);</span>
 <a id="__codelineno-24-15" name="__codelineno-24-15"></a><span class="w">  </span><span class="p">}</span>
@@ -1337,19 +1339,19 @@
 <a id="__codelineno-24-36" name="__codelineno-24-36"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-24-37" name="__codelineno-24-37"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>A classe tem:</p>
+<p>A classe apresenta:</p>
 <ul>
-  <li>dois campos privados, <b>nome </b>e <b>idade</b>
+  <li>dois campos privados <b>«nome» </b>e <b>«idade»</b>
   </li>
-  <li>métodos getter e setter para estes dois campos
+  <li>os métodos de leitura (get) e de gravação (set) destes dois campos
   </li>
-  <li>um método <b>toString </b>para recuperar o valor do objeto [Person] como uma string
+  <li>um método <b>toString </b>para recuperar o valor do objeto [Personne] na forma de uma cadeia de caracteres
   </li>
-  <li>um método <b>init </b>que será chamado pelo Spring quando o objeto for criado, e um método <b>close </b>que será chamado quando o objeto for destruído
+  <li>um método <b>init </b>que será chamado pelo Spring aquando da criação do objeto, e um método <b>close </b>que será chamado aquando da destruição do objeto
   </li>
 </ul>
 
-<p>Para criar objetos do tipo [Person], utilizaremos o seguinte ficheiro Spring:</p>
+<p>Para criar objetos do tipo [Personne], utilizaremos o seguinte ficheiro Spring:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-25-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-25-3"> 3</a></span>
@@ -1396,17 +1398,17 @@
 <a id="__codelineno-25-22" name="__codelineno-25-22"></a><span class="w">    </span><span class="nt">&lt;/bean&gt;</span>
 <a id="__codelineno-25-23" name="__codelineno-25-23"></a><span class="nt">&lt;/beans&gt;</span>
 </code></pre></div></td></tr></table></div>
-<p>Este ficheiro será denominado <strong>config.xml</strong>.</p>
+<p>Este ficheiro terá o nome <strong>config.xml</strong>.</p>
 <ul>
-  <li>Ele define dois beans com as respetivas chaves &quot;person1&quot; e &quot;person2&quot; do tipo [Person]
+  <li>Define dois beans com as chaves «pessoa1» e «pessoa2», respetivamente, do tipo [Personne]
   </li>
-  <li>Inicializa os campos [name, age] para cada pessoa
+  <li>Inicializa os campos [nom, age] de cada pessoa
   </li>
-  <li>Define os métodos a serem chamados durante a construção inicial do objeto [init-method] e durante a destruição do objeto [destroy-method]
+  <li>define os métodos a serem chamados durante a construção inicial do objeto [init-method] e durante a destruição do objeto [destroy-method]
   </li>
 </ul>
 
-<p>Para os nossos testes, utilizaremos uma única classe de teste JUnit à qual iremos adicionar métodos sucessivamente. A primeira versão desta classe será a seguinte:</p>
+<p>Para os nossos testes, utilizaremos uma única classe de teste JUnit, à qual iremos adicionar métodos sucessivamente. A primeira versão desta classe será a seguinte:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-26-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-26-3"> 3</a></span>
@@ -1444,16 +1446,16 @@
 <a id="__codelineno-26-8" name="__codelineno-26-8"></a>
 <a id="__codelineno-26-9" name="__codelineno-26-9"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Tests</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">TestCase</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-26-10" name="__codelineno-26-10"></a>
-<a id="__codelineno-26-11" name="__codelineno-26-11"></a><span class="w">   </span><span class="c1">// bean factory</span>
+<a id="__codelineno-26-11" name="__codelineno-26-11"></a><span class="w">   </span><span class="c1">// fábrica de beans</span>
 <a id="__codelineno-26-12" name="__codelineno-26-12"></a><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">ListableBeanFactory</span><span class="w"> </span><span class="n">bf</span><span class="p">;</span>
 <a id="__codelineno-26-13" name="__codelineno-26-13"></a>
-<a id="__codelineno-26-14" name="__codelineno-26-14"></a><span class="w">   </span><span class="c1">// init tests</span>
+<a id="__codelineno-26-14" name="__codelineno-26-14"></a><span class="w">   </span><span class="c1">// inicialização de testes</span>
 <a id="__codelineno-26-15" name="__codelineno-26-15"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setUp</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-26-16" name="__codelineno-26-16"></a><span class="w">    </span><span class="n">bf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">XmlBeanFactory</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ClassPathResource</span><span class="p">(</span><span class="s">&quot;config.xml&quot;</span><span class="p">));</span>
 <a id="__codelineno-26-17" name="__codelineno-26-17"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-26-18" name="__codelineno-26-18"></a>
 <a id="__codelineno-26-19" name="__codelineno-26-19"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">test1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-26-20" name="__codelineno-26-20"></a><span class="w">    </span><span class="c1">// retrieve [Person] bean keys from the Spring file</span>
+<a id="__codelineno-26-20" name="__codelineno-26-20"></a><span class="w">    </span><span class="c1">// recuperação dos beans [Personne] do ficheiro Spring através da sua chave</span>
 <a id="__codelineno-26-21" name="__codelineno-26-21"></a><span class="w">    </span><span class="n">Personne</span><span class="w"> </span><span class="n">personne1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Personne</span><span class="p">)</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="na">getBean</span><span class="p">(</span><span class="s">&quot;personne1&quot;</span><span class="p">);</span>
 <a id="__codelineno-26-22" name="__codelineno-26-22"></a><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;personne1=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">personne1</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
 <a id="__codelineno-26-23" name="__codelineno-26-23"></a><span class="w">    </span><span class="n">Personne</span><span class="w"> </span><span class="n">personne2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Personne</span><span class="p">)</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="na">getBean</span><span class="p">(</span><span class="s">&quot;personne2&quot;</span><span class="p">);</span>
@@ -1465,25 +1467,25 @@
 </code></pre></div></td></tr></table></div>
 <p>Comentários:</p>
 <ul>
-  <li>Para recuperar os beans definidos no ficheiro [config.xml], utilizamos um objeto do tipo [ListableBeanFactory]. Existem outros tipos de objetos que permitem o acesso aos beans. O objeto [ListableBeanFactory] é obtido no método [setUp] da classe de teste e armazenado numa variável privada. Assim, estará disponível para todos os métodos de teste.
+  <li>para obter os beans definidos no ficheiro [config.xml], utilizamos um objeto do tipo [ListableBeanFactory]. Existem outros tipos de objetos que permitem aceder aos beans. O objeto [ListableBeanFactory] é obtido no método [setUp] da classe de teste e armazenado numa variável privada. Desta forma, estará disponível para todos os métodos de teste.
   </li>
-  <li>O ficheiro [config.xml] será colocado no [ClassPath] da aplicação, ou seja, num dos diretórios pesquisados pela Máquina Virtual Java quando procura uma classe referenciada pela aplicação. O objeto [ClassPathResource] é utilizado para pesquisar um recurso no [ClassPath] de uma aplicação, neste caso o ficheiro [config.xml].
+  <li>O ficheiro [config.xml] será colocado no [ClassPath] da aplicação, c.a.d, num dos diretórios explorados pela máquina virtual Java quando esta procura uma classe referenciada pela aplicação. O objeto [ClassPathResource] serve para procurar um recurso no [ClassPath] de uma aplicação, neste caso o ficheiro [config.xml].
   </li>
-  <li>O Spring pode utilizar ficheiros de configuração em vários formatos. O objeto [XmlBeanFactory] é utilizado para analisar um ficheiro de configuração no formato XML.
+  <li>O Spring pode utilizar ficheiros de configuração com vários formatos. O objeto [XmlBeanFactory] permite analisar um ficheiro de configuração no formato XML.
   </li>
-  <li>O processamento de um ficheiro Spring devolve um objeto do tipo [ListableBeanFactory], neste caso o objeto <b>bf</b>. Com este objeto, obtém-se um bean identificado pela chave <b>C </b>através de <b>bf.getBean(C)</b>.
+  <li>A análise de um ficheiro Spring resulta num objeto do tipo [ListableBeanFactory], neste caso o objeto <b>bf</b>. Com este objeto, um bean identificado pela chave <b>C </b>é obtido através de <b>bf.getBean(C)</b>.
   </li>
-  <li>O método [test1] recupera e apresenta os valores dos beans com as chaves &quot;person1&quot; e &quot;person2&quot;.
+  <li>O método [test1] solicita e apresenta o valor dos beans com as chaves «pessoa1» e «pessoa2».
   </li>
 </ul>
 
 <p>A estrutura do projeto Eclipse da nossa aplicação é a seguinte:</p>
-<p><img src="images/10000000000000D5000000D01EFFD79D.png" width="213" height="208" style="width:5.636cm;height:5.503cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000D5000000D01EFFD79D.png" /></p>
+<p><img src="images/10000000000000D5000000D01EFFD79D.png" width="213" height="208" style="width:5.636cm;height:5.502cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000D5000000D01EFFD79D.png" /></p>
 <p>Comentários:</p>
 <ul>
-  <li>A pasta [src] contém o código-fonte. O código compilado será colocado numa pasta [bin] que não é mostrada aqui.
+  <li>A pasta [src] contém os códigos-fonte. Os códigos compilados serão colocados numa pasta [bin], aqui não representada.
   </li>
-  <li>O ficheiro [config.xml] está localizado na raiz da pasta [src]. A compilação do projeto copia-o automaticamente para a pasta [bin], que faz parte do [ClassPath] da aplicação. É aqui que ele é procurado pelo objeto [ClassPathResource].
+  <li>O ficheiro [config.xml] encontra-se na raiz da pasta [src]. A compilação do projeto copia-o automaticamente para a pasta [bin], que faz parte da pasta [ClassPath] da aplicação. É aí que é procurado pelo objeto [ClassPathResource].
   </li>
   <li>A pasta [lib] contém três bibliotecas Java necessárias para a aplicação:
     <ol>
@@ -1495,7 +1497,7 @@
         </ul>
     </ol>
   </li>
-  <li>A pasta [lib] também faz parte do [ClassPath] da aplicação
+  <li>a pasta [lib] também faz parte do [ClassPath] da aplicação
   </li>
 </ul>
 
@@ -1524,17 +1526,17 @@
 </code></pre></div></td></tr></table></div>
 <p>Comentários:</p>
 <ul>
-  <li>O Spring regista vários eventos utilizando a biblioteca [commons-logging.jar]. Estes registos ajudam-nos a compreender melhor como o Spring funciona.
+  <li>O Spring regista uma série de eventos através da biblioteca [commons-logging.jar]. Estes registos permitem-nos compreender melhor o funcionamento do Spring.
   </li>
-  <li>O ficheiro [config.xml] foi carregado e, em seguida, processado
+  <li>O ficheiro [config.xml] foi carregado e, em seguida, utilizado
   </li>
-  <li>A operação*
+  <li>a operação*
   </li>
 </ul>
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>Personne personne1 = (Personne) bf.getBean(&quot;personne1&quot;);
 </code></pre></div>
-<p>forçou a criação do bean [person1]. Podemos ver o registo do Spring relativo a isto. Como tínhamos escrito [init-method=&quot;init&quot;] na definição do bean [person1], o método [init] do objeto [Person] criado foi executado. A mensagem correspondente é apresentada.</p>
+<p>forçou a criação do bean [personne1]. Podemos ver o registo do Spring a este respeito. Como na definição do bean [personne1] tínhamos escrito [init-method=&quot;init&quot;], o método [init] do objeto [Personne] criado foi executado. A mensagem correspondente é apresentada.</p>
 <ul>
   <li>A operação
   </li>
@@ -1542,9 +1544,9 @@
 
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;personne1=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">personne1</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
 </code></pre></div>
-<p>exibiu o valor do objeto [Person] criado.</p>
+<p>fez com que fosse exibido o valor do objeto [Personne] criado.</p>
 <ul>
-  <li>O mesmo fenómeno ocorre com o bean-chave [person2].
+  <li>O mesmo fenómeno repete-se para o bean-chave [personne2].
   </li>
   <li>A última operação
   </li>
@@ -1553,15 +1555,15 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="w">    </span><span class="n">personne2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Personne</span><span class="p">)</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="na">getBean</span><span class="p">(</span><span class="s">&quot;personne2&quot;</span><span class="p">);</span>
 <a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;personne2=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">personne2</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
 </code></pre></div>
-<p>não resultou na criação de um novo objeto do tipo [Person]. Se assim fosse, o método [init] teria sido exibido, o que não é o caso aqui. Este é o princípio <strong>do singleton</strong>. Por predefinição, o Spring cria apenas uma única instância dos beans no seu ficheiro de configuração. Trata-se de um serviço de referência a objetos. Se lhe for solicitada a referência a um objeto que ainda não tenha sido criado, ele cria-o e devolve uma referência. Se o objeto já tiver sido criado, o Spring devolve simplesmente uma referência ao mesmo.</p>
+<p>não provocou a criação de um novo objeto do tipo [Personne]. Se assim fosse, teríamos assistido à execução do método [init], o que não acontece neste caso. Este é o princípio do <strong>singleton</strong>. Por predefinição, o Spring cria apenas uma única instância dos beans do seu ficheiro de configuração. Trata-se de um serviço de referências a objetos. Se lhe for solicitada a referência de um objeto ainda não criado, o Spring cria-o e devolve uma referência ao mesmo. Se o objeto já tiver sido criado, o Spring limita-se a fornecer uma referência ao mesmo.</p>
 <ul>
-  <li>Note-se que não há qualquer vestígio do método [close] do objeto [Person], apesar de termos escrito [destroy-method=close] na definição do bean. É possível que este método só seja executado quando a memória ocupada pelo objeto for recuperada pelo coletor de lixo. Quando isso acontece, a aplicação já terminou e escrever no ecrã não tem qualquer efeito. A verificar.
+  <li>Pode-se observar que não há qualquer vestígio do método [close] do objeto [Personne], embora o tenhamos escrito na definição dos beans [destroy-method=close]. É possível que este método só seja executado quando a memória ocupada pelo objeto for recuperada pelo coletor de lixo (garbage collector). Nesse momento, a aplicação já terminou e a escrita no ecrã não tem qualquer efeito. A verificar.
   </li>
 </ul>
 
-<p>Agora que abordámos os conceitos básicos de uma configuração Spring, poderemos avançar nas nossas explicações um pouco mais rapidamente.</p>
+<p>Agora que já dominamos os fundamentos de uma configuração Spring, as nossas explicações serão um pouco mais rápidas.</p>
 <h3 id="232-exemplo-2">2.3.2. <span style="color: #4f81bd">Exemplo 2</span></h3>
-<p>Considere a seguinte nova classe [Car]:</p>
+<p>Consideremos a seguinte nova classe [Voiture]:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-31-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-31-3"> 3</a></span>
@@ -1627,7 +1629,7 @@
 <a id="__codelineno-31-5" name="__codelineno-31-5"></a><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">;</span>
 <a id="__codelineno-31-6" name="__codelineno-31-6"></a><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">Personne</span><span class="w"> </span><span class="n">propriétaire</span><span class="p">;</span>
 <a id="__codelineno-31-7" name="__codelineno-31-7"></a>
-<a id="__codelineno-31-8" name="__codelineno-31-8"></a><span class="w">   </span><span class="c1">// manufacturers</span>
+<a id="__codelineno-31-8" name="__codelineno-31-8"></a><span class="w">   </span><span class="c1">// construtores</span>
 <a id="__codelineno-31-9" name="__codelineno-31-9"></a>
 <a id="__codelineno-31-10" name="__codelineno-31-10"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="nf">Voiture</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-31-11" name="__codelineno-31-11"></a><span class="w">  </span><span class="p">}</span>
@@ -1669,7 +1671,7 @@
 <a id="__codelineno-31-47" name="__codelineno-31-47"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">type</span><span class="p">;</span>
 <a id="__codelineno-31-48" name="__codelineno-31-48"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-31-49" name="__codelineno-31-49"></a>
-<a id="__codelineno-31-50" name="__codelineno-31-50"></a><span class="w">   </span><span class="c1">// init-close</span>
+<a id="__codelineno-31-50" name="__codelineno-31-50"></a><span class="w">   </span><span class="c1">// inicialização e encerramento</span>
 <a id="__codelineno-31-51" name="__codelineno-31-51"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-31-52" name="__codelineno-31-52"></a><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;init voiture [&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;]&quot;</span><span class="p">);</span>
 <a id="__codelineno-31-53" name="__codelineno-31-53"></a><span class="w">  </span><span class="p">}</span>
@@ -1680,17 +1682,17 @@
 <a id="__codelineno-31-58" name="__codelineno-31-58"></a>
 <a id="__codelineno-31-59" name="__codelineno-31-59"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>A classe tem:</p>
+<p>A classe apresenta:</p>
 <ul>
-  <li>três campos privados: <b>type</b>, <b>make </b>e <b>owner</b>. Estes campos podem ser inicializados e lidos utilizando os métodos públicos <b>get </b>e <b>set</b>. Também podem ser inicializados utilizando o construtor<b> Car(String, String, Person)</b>. A classe possui ainda um construtor sem argumentos para cumprir a norma JavaBean.
+  <li>três campos privados<b>: tipo</b>, <b>marca </b>e <b>proprietário</b>. Estes campos podem ser inicializados e lidos através dos métodos públicos <b>get </b>e <b>set </b>dos beans. Podem também ser inicializados utilizando o construtor <b>Carro(String, String, Pessoa)</b>. A classe possui ainda um construtor sem argumentos, de modo a cumprir a norma JavaBean.
   </li>
-  <li>um método <b>toString </b>para recuperar o valor do objeto [Car] como uma string
+  <li>um método <b>toString </b>para recuperar o valor do objeto [Voiture] na forma de uma cadeia de caracteres
   </li>
-  <li>um método <b>init </b>que será chamado pelo Spring imediatamente após a criação do objeto, um método <b>close </b>que será chamado quando o objeto for destruído
+  <li>um método <b>init </b>que será chamado pelo Spring imediatamente após a criação do objeto, e um método <b>close </b>que será chamado aquando da destruição do objeto
   </li>
 </ul>
 
-<p>Para criar objetos do tipo [Car], utilizaremos o seguinte ficheiro [<strong>config.xml</strong>] do Spring:</p>
+<p>Para criar objetos do tipo [Voiture], utilizaremos o seguinte ficheiro Spring [config.xml]:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-32-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-32-3"> 3</a></span>
@@ -1761,7 +1763,7 @@
 <a id="__codelineno-32-34" name="__codelineno-32-34"></a><span class="w">    </span><span class="nt">&lt;/bean&gt;</span>
 <a id="__codelineno-32-35" name="__codelineno-32-35"></a><span class="nt">&lt;/beans&gt;</span>
 </code></pre></div></td></tr></table></div>
-<p>Este ficheiro adiciona um bean com a chave &quot;car1&quot; do tipo [Car] às definições anteriores. Para inicializar este bean, poderíamos ter escrito:</p>
+<p>Este ficheiro adiciona às definições anteriores um bean com a chave «voiture1» do tipo [Voiture]. Para inicializar este bean, poderíamos ter escrito:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-33-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-33-3"> 3</a></span>
@@ -1786,20 +1788,20 @@
 <a id="__codelineno-33-11" name="__codelineno-33-11"></a>        &lt;/property&gt;
 <a id="__codelineno-33-12" name="__codelineno-33-12"></a>    &lt;/bean&gt;
 </code></pre></div></td></tr></table></div>
-<p>Em vez de escolher o método já apresentado, optámos aqui por utilizar o construtor <strong>Car(String, String, Person)</strong> da classe. Além disso, o bean [car1] define o método a ser chamado durante a construção inicial do objeto [init-method] e o método a ser chamado durante a destruição do objeto [destroy-method].</p>
+<p>Em vez de optar por este método já apresentado, optámos aqui por utilizar o construtor <strong>Carro(String, String, Pessoa)</strong> da classe. Além disso, o bean [voiture1] define o método a ser chamado durante a construção inicial do objeto [init-method] e aquele a ser chamado durante a destruição do objeto [destroy-method].</p>
 <p>Para os nossos testes, utilizaremos a classe de teste JUnit já apresentada, adicionando-lhe o seguinte método [test2]:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1">1</a></span>
 <span class="normal"><a href="#__codelineno-34-2">2</a></span>
 <span class="normal"><a href="#__codelineno-34-3">3</a></span>
 <span class="normal"><a href="#__codelineno-34-4">4</a></span>
 <span class="normal"><a href="#__codelineno-34-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">test2</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-34-2" name="__codelineno-34-2"></a><span class="w">     </span><span class="c1">// recovery of bean [voiture1]</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2"></a><span class="w">     </span><span class="c1">// recuperação do bean [voiture1]</span>
 <a id="__codelineno-34-3" name="__codelineno-34-3"></a><span class="w">    </span><span class="n">Voiture</span><span class="w"> </span><span class="n">Voiture1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Voiture</span><span class="p">)</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="na">getBean</span><span class="p">(</span><span class="s">&quot;voiture1&quot;</span><span class="p">);</span>
 <a id="__codelineno-34-4" name="__codelineno-34-4"></a><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Voiture1=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Voiture1</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
 <a id="__codelineno-34-5" name="__codelineno-34-5"></a><span class="w">  </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>O método [test2] recupera o bean [car1] e apresenta-o.</p>
-<p>A estrutura do projeto Eclipse permanece a mesma do teste anterior. A execução do método [test2] do teste JUnit produz os seguintes resultados:</p>
+<p>O método [test2] recupera o bean [voiture1] e apresenta-o.</p>
+<p>A estrutura do projeto Eclipse mantém-se igual à do teste anterior. A execução do método [test2] do teste JUnit produz os seguintes resultados:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-35-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-35-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-35-3"> 3</a></span>
@@ -1824,23 +1826,24 @@
 </code></pre></div></td></tr></table></div>
 <p>Comentários:</p>
 <ol>
-  <li>O método [test2] solicita uma referência ao bean [car1]
+  <li>o método [test2] solicita uma referência ao bean [voiture1]
   </li>
-  <li>Linha 4: O Spring começa a criar o bean [car1] porque este bean ainda não foi criado (singleton)
+  <li>linha 4: o Spring inicia a criação do bean [voiture1], uma vez que este bean ainda não foi criado (singleton)
   </li>
-  <li>linha 6: como o bean [car1] faz referência ao bean [person2], este último é, por sua vez, construído
+  <li>linha 6: como o bean [voiture1] faz referência ao bean [personne2], este último bean é, por sua vez, criado
   </li>
-  <li>Linha 7: o bean [person2] foi criado. O seu método [init] é então executado.
+  <li>linha 7: o bean [personne2] foi criado. O seu método [init] é então executado.
   </li>
-  <li>Linha 9: O Spring indica que utilizará um construtor para criar o bean [car1]
+  <li>linha 9: o Spring indica que vai utilizar um construtor para criar o bean [voiture1]
   </li>
-  <li>linha 10: o bean [car1] foi criado. O seu método [init] é então executado.
+  <li>linha 10: o bean [voiture1] foi criado. O seu método [init] é então executado.
   </li>
-  <li>linha 11: o método [test2] exibe o valor do bean [car1]
+  <li>linha 11: o método [test2] exibe o valor do bean [voiture1]
   </li>
 </ol>
+
 <h3 id="233-exemplo-3">2.3.3. <span style="color: #4f81bd">Exemplo 3</span></h3>
-<p>Apresentamos a seguinte nova classe [PersonGroup]:</p>
+<p>Introduzimos a seguinte nova classe [GroupePersonnes]:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-36-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-36-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-36-3"> 3</a></span>
@@ -1908,7 +1911,7 @@
 <a id="__codelineno-36-23" name="__codelineno-36-23"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">groupesDeTravail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">groupesDeTravail</span><span class="p">;</span>
 <a id="__codelineno-36-24" name="__codelineno-36-24"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-36-25" name="__codelineno-36-25"></a>
-<a id="__codelineno-36-26" name="__codelineno-36-26"></a><span class="w">   </span><span class="c1">// display</span>
+<a id="__codelineno-36-26" name="__codelineno-36-26"></a><span class="w">   </span><span class="c1">// exibição</span>
 <a id="__codelineno-36-27" name="__codelineno-36-27"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">toString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-36-28" name="__codelineno-36-28"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">liste</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;membres : &quot;</span><span class="p">;</span>
 <a id="__codelineno-36-29" name="__codelineno-36-29"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">membres</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1917,7 +1920,7 @@
 <a id="__codelineno-36-32" name="__codelineno-36-32"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">liste</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, groupes de travail = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">groupesDeTravail</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
 <a id="__codelineno-36-33" name="__codelineno-36-33"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-36-34" name="__codelineno-36-34"></a>
-<a id="__codelineno-36-35" name="__codelineno-36-35"></a><span class="w">   </span><span class="c1">// init-close</span>
+<a id="__codelineno-36-35" name="__codelineno-36-35"></a><span class="w">   </span><span class="c1">// inicialização-encerramento</span>
 <a id="__codelineno-36-36" name="__codelineno-36-36"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-36-37" name="__codelineno-36-37"></a><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;init GroupePersonnes [&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;]&quot;</span><span class="p">);</span>
 <a id="__codelineno-36-38" name="__codelineno-36-38"></a><span class="w">  </span><span class="p">}</span>
@@ -1928,10 +1931,10 @@
 <a id="__codelineno-36-43" name="__codelineno-36-43"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>Os seus dois membros privados são:</p>
-<p><strong>members</strong>: uma matriz de pessoas que são membros do grupo</p>
-<p><strong>workGroups</strong>: um dicionário que associa uma pessoa a um grupo de trabalho</p>
-<p>Note-se aqui que a classe [PeopleGroup] não define um construtor sem argumentos para cumprir a norma JavaBean. Recorde-se que, na ausência de qualquer construtor, existe um construtor «padrão», que é o construtor sem argumentos que não faz nada.</p>
-<p>O objetivo aqui é demonstrar como o Spring permite a inicialização de objetos complexos, tais como aqueles com campos de matriz ou dicionário. Adicionamos um novo bean ao ficheiro [config.xml] do Spring anterior:</p>
+<p><strong>membros</strong>: um array de pessoas que fazem parte do grupo</p>
+<p><strong>groupesDeTravail</strong>: um dicionário que atribui uma pessoa a um grupo de trabalho</p>
+<p>Note-se aqui que a classe [GroupePersonnes] não define um construtor sem argumentos, em conformidade com a norma JavaBean. Recorde-se que, na ausência de qualquer construtor, existe um construtor «padrão», que é o construtor sem argumentos e que não faz nada.</p>
+<p>O objetivo aqui é mostrar como o Spring permite inicializar objetos complexos, tais como objetos que possuem campos do tipo matriz ou dicionário. Adicionamos um novo bean ao ficheiro Spring [config.xml] anterior:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-37-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-37-3"> 3</a></span>
@@ -1971,9 +1974,9 @@
 <a id="__codelineno-37-19" name="__codelineno-37-19"></a>    &lt;/bean&gt;
 </code></pre></div></td></tr></table></div>
 <ol>
-  <li>A tag &lt;<b>list</b>&gt; permite-lhe inicializar um campo do tipo array ou um que implemente a interface <b>List </b>com valores diferentes.
+  <li>A baliza &lt;<b>list</b>&gt; permite inicializar um campo do tipo matriz ou que implemente a interface <b>List </b>com diferentes valores.
   </li>
-  <li>A tag &lt;<b>map</b>&gt; permite fazer o mesmo com um campo que implemente a interface <b>Map</b>
+  <li>A baliza &lt;<b>map</b>&gt; permite fazer o mesmo com um campo que implemente a interface <b>Map</b>
   </li>
 </ol>
 
@@ -1983,13 +1986,13 @@
 <span class="normal"><a href="#__codelineno-38-3">3</a></span>
 <span class="normal"><a href="#__codelineno-38-4">4</a></span>
 <span class="normal"><a href="#__codelineno-38-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">test3</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-38-2" name="__codelineno-38-2"></a><span class="w">    </span><span class="c1">// bean retrieval [group1]]</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2"></a><span class="w">    </span><span class="c1">// recuperação do bean [groupe1]</span>
 <a id="__codelineno-38-3" name="__codelineno-38-3"></a><span class="w">    </span><span class="n">GroupePersonnes</span><span class="w"> </span><span class="n">groupe1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">GroupePersonnes</span><span class="p">)</span><span class="w"> </span><span class="n">bf</span><span class="p">.</span><span class="na">getBean</span><span class="p">(</span><span class="s">&quot;groupe1&quot;</span><span class="p">);</span>
 <a id="__codelineno-38-4" name="__codelineno-38-4"></a><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;groupe1=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">groupe1</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
 <a id="__codelineno-38-5" name="__codelineno-38-5"></a><span class="w">  </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>O método [test3] recupera o bean [groupe1] e apresenta-o.</p>
-<p>A estrutura do projeto Eclipse permanece a mesma do teste anterior. A execução do método [test3] do teste JUnit produz os seguintes resultados:</p>
+<p>A estrutura do projeto Eclipse mantém-se igual à do teste anterior. A execução do método [test3] do teste JUnit produz os seguintes resultados:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-39-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-39-3"> 3</a></span>
@@ -2016,35 +2019,35 @@
 </code></pre></div></td></tr></table></div>
 <p>Comentários:</p>
 <ul>
-  <li>O método [test3] solicita uma referência ao bean [group1]
+  <li>o método [test3] solicita uma referência ao bean [groupe1]
   </li>
-  <li>linha 4: O Spring começa a criar este bean
+  <li>linha 4: o Spring inicia a criação deste bean
   </li>
-  <li>Como o bean [group1] faz referência aos beans [person1] e [person2], estes dois beans são criados (linhas 6 e 9) e os seus métodos init são executados (linhas 7 e 10)
+  <li>uma vez que o bean [groupe1] faz referência aos beans [personne1] e [personne2], estes dois beans são criados (linhas 6 e 9) e o seu método init é executado (linhas 7 e 10)
   </li>
-  <li>Linha 11: O bean [group1] foi criado. O seu método [init] é agora executado.
+  <li>linha 11: o bean [groupe1] foi criado. O seu método [init] é agora executado.
   </li>
-  <li>Linha 12: Exibição solicitada pelo método [test3].
+  <li>linha 12: exibição solicitada pelo método [test3].
   </li>
 </ul>
 
 <h2 id="24-spring-para-configurar-aplicacoes-web-de-tres-camadas">2.4. <span style="color: #4f81bd">Spring para configurar aplicações web de três camadas</span></h2>
 <h3 id="241-arquitetura-geral-da-aplicacao">2.4.1. <span style="color: #4f81bd">Arquitetura geral da aplicação</span></h3>
-<p>Queremos construir uma aplicação de três camadas com a seguinte estrutura:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000006400000010355E55B59.png" width="680" height="110" style="display:inline-block; margin:4px;width:17.997cm;height:2.912cm;" class="odt-zoomable" data-zoom-src="images/10000000000006400000010355E55B59.png" /></td></tr></table>
+<p>Pretende-se construir uma aplicação de três camadas com a seguinte estrutura:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000006400000010355E55B59.png" width="680" height="110" style="display:inline-block; margin:4px;width:17.997cm;height:2.914cm;" class="odt-zoomable" data-zoom-src="images/10000000000006400000010355E55B59.png" /></td></tr></table>
 
 <ul>
-  <li>As três camadas serão tornadas independentes através da utilização de interfaces Java
+  <li>as três camadas serão tornadas independentes através da utilização de interfaces Java
   </li>
-  <li>A integração das três camadas será gerida pelo Spring
+  <li>A integração das três camadas será realizada pelo Spring
   </li>
-  <li>Criaremos pacotes separados para cada uma das três camadas, aos quais daremos os nomes de <b>Control</b>, <b>Domain </b>e <b>Dao</b>. Um pacote adicional conterá as aplicações de teste.
+  <li>Serão criados pacotes separados para cada uma das três camadas, que serão denominados <b>Control</b>, <b>Domain </b>e <b>Dao</b>. Um pacote adicional conterá as aplicações de teste.
   </li>
 </ul>
 
 <p>A estrutura da aplicação no Eclipse poderá ser a seguinte:</p>
 <p><img src="images/10000000000000E8000001B51462EB46.png" width="232" height="437" style="width:6.137cm;height:11.561cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E8000001B51462EB46.png" /></p>
-<h3 id="242-a-camada-de-acesso-a-dados-dao">2.4.2. <span style="color: #4f81bd">A camada de acesso a dados DAO</span></h3>
+<h3 id="242-a-camada-dao-de-acesso-aos-dados">2.4.2. <span style="color: #4f81bd"><strong>A camada DAO de acesso aos dados</strong></span></h3>
 <p>A camada DAO implementará a seguinte interface:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">istia.st.demo.dao</span><span class="p">;</span>
 <a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>
@@ -2053,13 +2056,14 @@
 <a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="p">}</span>
 </code></pre></div>
 <ul>
-  <li>Escreva duas classes, <b>Dao1Impl1 </b>e <b>Dao1Impl2, </b>que implementem a interface <b>IDao1</b>. O método <b>Dao1Impl1</b>.<b>doSomethingInDaoLayer </b>irá devolver a+b, e o método <b>Dao1Impl2</b>.<b>doSomethingInDaoLayer </b>irá devolver a-b.
+  <li>Escrever duas classes, <b>Dao1Impl1 </b>e <b>Dao1Impl2, </b>que implementem a interface <b>IDao1</b>. O método <b>Dao1Impl1</b>. <b>doSomethingInDaoLayer </b>irá devolver a+b e o método <b>Dao1Impl2</b>. <b>doSomethingInDaoLayer </b>irá devolver a-b.
   </li>
-  <li>Escreva uma classe de teste JUnit para testar as duas classes anteriores
+  <li>escrever uma classe de teste JUnit que teste as duas classes anteriores
   </li>
 </ul>
-<h3 id="243-a-camada-de-negocios">2.4.3. <span style="color: #4f81bd">A camada de negócios</span></h3>
-<p>A camada de negócios irá implementar a seguinte interface:</p>
+
+<h3 id="243-a-camada-de-negocio">2.4.3. <span style="color: #4f81bd">A camada de negócio</span></h3>
+<p>A camada de negócio irá implementar a seguinte interface:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">istia.st.demo.domain</span><span class="p">;</span>
 <a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>
 <a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">IDomain1</span><span class="w"> </span><span class="p">{</span>
@@ -2067,14 +2071,14 @@
 <a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="p">}</span>
 </code></pre></div>
 <ul>
-  <li>Escreva duas classes, <b>Domain1Impl1 </b>e <b>Domain1Impl2, </b>que implementem a interface <b>IDomain1</b>. Estas classes terão um construtor que recebe um parâmetro do tipo <b>IDao1</b>. O método<b> Domain1Impl1.doSomethingInDomainLayer </b>incrementará a e b em um, e depois passará estes dois parâmetros para o método <b>doSomethingInDaoLayer </b>do objeto <b>IDao1</b> recebido. O método<b> Domain1Impl2.doSomethingInDomainLayer</b>, por outro lado, irá diminuir a e b em um antes de fazer o mesmo.
+  <li>Escrever duas classes, <b>Domain1Impl1 </b>e <b>Domain1Impl2, </b>que implementem a interface <b>IDomain1</b>. Estas classes terão um construtor que receba como parâmetro um objeto do tipo <b>IDao1</b>. O método <b>Domain1Impl1.doSomethingInDomainLayer </b>incrementará a e b em uma unidade e, em seguida, passará esses dois parâmetros para o método <b>doSomethingInDaoLayer </b>do objeto do tipo <b>IDao1 </b>recebido. O método <b>Domain1Impl2.doSomethingInDomainLayer</b>, por sua vez, diminuirá a e b em uma unidade antes de fazer o mesmo.
   </li>
-  <li>Escreva uma classe de teste JUnit para testar as duas classes anteriores
+  <li>Escrever uma classe de teste JUnit para testar as duas classes anteriores
   </li>
 </ul>
 
 <h3 id="244-a-camada-de-interface-do-utilizador">2.4.4. <span style="color: #4f81bd">A camada de interface do utilizador</span></h3>
-<p>A camada de interface do utilizador irá implementar a seguinte interface:</p>
+<p>A camada de interface do utilizador implementará a seguinte interface:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">istia.st.demo.control</span><span class="p">;</span>
 <a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>
 <a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">IControl1</span><span class="w"> </span><span class="p">{</span>
@@ -2082,24 +2086,26 @@
 <a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="p">}</span>
 </code></pre></div>
 <ul>
-  <li>Escreva duas classes, <b>Control1Impl1 </b>e <b>Control1Impl2, </b>que implementem a interface <b>IControl1</b>. Estas classes terão um construtor que recebe um parâmetro do tipo <b>IDomain1</b>. O método<b> Control1Impl1.doSomethingInControlLayer </b>incrementará a e b em um, e depois passará estes dois parâmetros para o método <b>doSomethingInDomainLayer </b>do objeto <b>IDomain1</b> recebido. O método<b> </b><b>Control1Impl2.doSomethingInControlLayer</b>, por outro lado, irá diminuir a e b em um antes de fazer o mesmo.
+  <li>Escrever duas classes, <b>Control1Impl1 </b>e <b>Control1Impl2, </b>que implementem a interface <b>IControl1</b>. Estas classes terão um construtor que recebe um parâmetro do tipo <b>IDomain1</b>. O método <b>Control1Impl1.doSomethingInControlLayer </b>incrementará a e b em uma unidade e, em seguida, passará esses dois parâmetros para o método <b>doSomethingInDomainLayer </b>do objeto do tipo <b>IDomain1 </b>recebido. Já o método <b>Control11Impl2.doSomethingInControlLayer </b>irá decrementar a e b em uma unidade antes de fazer o mesmo.
   </li>
-  <li>Escreva uma classe de teste JUnit para testar as duas classes anteriores
+  <li>Escrever uma classe de teste JUnit para testar as duas classes anteriores
   </li>
 </ul>
+
 <h3 id="245-integracao-com-o-spring">2.4.5. <span style="color: #4f81bd">Integração com o Spring</span></h3>
 <ul>
-  <li>Escreva um ficheiro de configuração Spring que determinará quais as classes que cada uma das três camadas anteriores deve utilizar
+  <li>Escrever um ficheiro de configuração do Spring que determinará quais as classes que cada uma das três camadas anteriores deverá utilizar
   </li>
-  <li>Escreva uma classe de teste JUnit utilizando diferentes configurações do Spring para destacar a flexibilidade da aplicação
+  <li>Escrever uma classe de teste JUnit utilizando diferentes configurações do Spring, de modo a destacar a flexibilidade da aplicação criada
   </li>
-  <li>Escreva uma aplicação autónoma (método main) que passe dois parâmetros para a interface <b>IControl1 </b>e exiba o resultado devolvido pela interface.
+  <li>Escrever uma aplicação autónoma (método main) que passe dois parâmetros à interface <b>IControl1 </b>e exiba o resultado gerado pela interface.
   </li>
 </ul>
-<h3 id="246-uma-solucao">2.4.6. <span style="color: #4f81bd"><strong><span style="color: #4f81bd">Uma solução</span></strong></span></h3>
+
+<h3 id="246-uma-solucao">2.4.6. <span style="color: #4f81bd">Uma solução</span></h3>
 <h4 id="2461-o-projeto-eclipse">2.4.6.1. <span style="color: #4f81bd">O projeto Eclipse</span></h4>
-<p><img src="images/10000000000000D8000001AD27411C6F.png" width="216" height="429" style="width:5.713cm;height:11.347cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000D8000001AD27411C6F.png" /></p>
-<p>Os arquivos na pasta [lib] foram adicionados ao [ClassPath] do projeto.</p>
+<p><img src="images/10000000000000D8000001AD27411C6F.png" width="216" height="429" style="width:5.713cm;height:11.349cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000D8000001AD27411C6F.png" /></p>
+<p>Os arquivos da pasta [lib] foram adicionados ao [ClassPath] do projeto.</p>
 <h4 id="2462-o-pacote-istiastdemodao">2.4.6.2. <span style="color: #4f81bd">O pacote [istia.st.demo.dao]</span></h4>
 <p>A interface:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-43-1">1</a></span>
@@ -2142,7 +2148,7 @@
 <a id="__codelineno-44-6" name="__codelineno-44-6"></a><span class="cm"> */</span>
 <a id="__codelineno-44-7" name="__codelineno-44-7"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Dao1Impl1</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">IDao1</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-44-8" name="__codelineno-44-8"></a>
-<a id="__codelineno-44-9" name="__codelineno-44-9"></a><span class="w">     </span><span class="c1">// we do something in the [dao] layer</span>
+<a id="__codelineno-44-9" name="__codelineno-44-9"></a><span class="w">     </span><span class="c1">// faz-se algo na camada [dao]</span>
 <a id="__codelineno-44-10" name="__codelineno-44-10"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">doSometingInDaoLayer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-44-11" name="__codelineno-44-11"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>
 <a id="__codelineno-44-12" name="__codelineno-44-12"></a><span class="w">  </span><span class="p">}</span>
@@ -2170,7 +2176,7 @@
 <a id="__codelineno-45-6" name="__codelineno-45-6"></a><span class="cm"> */</span>
 <a id="__codelineno-45-7" name="__codelineno-45-7"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Dao1Impl2</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">IDao1</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-45-8" name="__codelineno-45-8"></a>
-<a id="__codelineno-45-9" name="__codelineno-45-9"></a><span class="w">     </span><span class="c1">// we do something in the [dao] layer</span>
+<a id="__codelineno-45-9" name="__codelineno-45-9"></a><span class="w">     </span><span class="c1">// está a ser feito algo na camada [dao]</span>
 <a id="__codelineno-45-10" name="__codelineno-45-10"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">doSometingInDaoLayer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-45-11" name="__codelineno-45-11"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">;</span>
 <a id="__codelineno-45-12" name="__codelineno-45-12"></a><span class="w">  </span><span class="p">}</span>
@@ -2196,7 +2202,7 @@
 <a id="__codelineno-46-6" name="__codelineno-46-6"></a><span class="cm"> */</span>
 <a id="__codelineno-46-7" name="__codelineno-46-7"></a><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">IDomain1</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-46-8" name="__codelineno-46-8"></a>
-<a id="__codelineno-46-9" name="__codelineno-46-9"></a><span class="w">     </span><span class="c1">// we do something in the [domain] layer</span>
+<a id="__codelineno-46-9" name="__codelineno-46-9"></a><span class="w">     </span><span class="c1">// faz-se algo na camada [domain]</span>
 <a id="__codelineno-46-10" name="__codelineno-46-10"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">doSomethingInDomainLayer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
 <a id="__codelineno-46-11" name="__codelineno-46-11"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
@@ -2239,19 +2245,19 @@
 <a id="__codelineno-47-8" name="__codelineno-47-8"></a><span class="cm"> */</span>
 <a id="__codelineno-47-9" name="__codelineno-47-9"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Domain1Impl1</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">IDomain1</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-47-10" name="__codelineno-47-10"></a>
-<a id="__codelineno-47-11" name="__codelineno-47-11"></a><span class="w">     </span><span class="c1">// the [dao] layer access service</span>
+<a id="__codelineno-47-11" name="__codelineno-47-11"></a><span class="w">     </span><span class="c1">// o serviço de acesso à camada [dao]</span>
 <a id="__codelineno-47-12" name="__codelineno-47-12"></a><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">IDao1</span><span class="w"> </span><span class="n">dao1</span><span class="p">;</span>
 <a id="__codelineno-47-13" name="__codelineno-47-13"></a>
 <a id="__codelineno-47-14" name="__codelineno-47-14"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="nf">Domain1Impl1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-47-15" name="__codelineno-47-15"></a><span class="w">     </span><span class="c1">// constructor with no arguments</span>
+<a id="__codelineno-47-15" name="__codelineno-47-15"></a><span class="w">     </span><span class="c1">// construtor sem argumentos</span>
 <a id="__codelineno-47-16" name="__codelineno-47-16"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-47-17" name="__codelineno-47-17"></a>
-<a id="__codelineno-47-18" name="__codelineno-47-18"></a><span class="w">     </span><span class="c1">// memorizes the [dao] layer access service</span>
+<a id="__codelineno-47-18" name="__codelineno-47-18"></a><span class="w">     </span><span class="c1">// armazena o serviço de acesso à camada [dao]</span>
 <a id="__codelineno-47-19" name="__codelineno-47-19"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="nf">Domain1Impl1</span><span class="p">(</span><span class="n">IDao1</span><span class="w"> </span><span class="n">dao1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-47-20" name="__codelineno-47-20"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">dao1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dao1</span><span class="p">;</span>
 <a id="__codelineno-47-21" name="__codelineno-47-21"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-47-22" name="__codelineno-47-22"></a>
-<a id="__codelineno-47-23" name="__codelineno-47-23"></a><span class="w">     </span><span class="c1">// we do something in the [domain] layer</span>
+<a id="__codelineno-47-23" name="__codelineno-47-23"></a><span class="w">     </span><span class="c1">// realiza-se alguma ação na camada [domain]</span>
 <a id="__codelineno-47-24" name="__codelineno-47-24"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">doSomethingInDomainLayer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-47-25" name="__codelineno-47-25"></a><span class="w">    </span><span class="n">a</span><span class="o">++</span><span class="p">;</span>
 <a id="__codelineno-47-26" name="__codelineno-47-26"></a><span class="w">    </span><span class="n">b</span><span class="o">++</span><span class="p">;</span>
@@ -2298,19 +2304,19 @@
 <a id="__codelineno-48-8" name="__codelineno-48-8"></a><span class="cm"> */</span>
 <a id="__codelineno-48-9" name="__codelineno-48-9"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Domain1Impl2</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">IDomain1</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-48-10" name="__codelineno-48-10"></a>
-<a id="__codelineno-48-11" name="__codelineno-48-11"></a><span class="w">     </span><span class="c1">// the [dao] layer access service</span>
+<a id="__codelineno-48-11" name="__codelineno-48-11"></a><span class="w">     </span><span class="c1">// o serviço de acesso à camada [dao]</span>
 <a id="__codelineno-48-12" name="__codelineno-48-12"></a><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">IDao1</span><span class="w"> </span><span class="n">dao1</span><span class="p">;</span>
 <a id="__codelineno-48-13" name="__codelineno-48-13"></a>
 <a id="__codelineno-48-14" name="__codelineno-48-14"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="nf">Domain1Impl2</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-48-15" name="__codelineno-48-15"></a><span class="w">     </span><span class="c1">// constructor with no arguments</span>
+<a id="__codelineno-48-15" name="__codelineno-48-15"></a><span class="w">     </span><span class="c1">// construtor sem argumentos</span>
 <a id="__codelineno-48-16" name="__codelineno-48-16"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-48-17" name="__codelineno-48-17"></a>
-<a id="__codelineno-48-18" name="__codelineno-48-18"></a><span class="w">     </span><span class="c1">// memorizes the [dao] layer access service</span>
+<a id="__codelineno-48-18" name="__codelineno-48-18"></a><span class="w">     </span><span class="c1">// armazena o serviço de acesso à camada [dao]</span>
 <a id="__codelineno-48-19" name="__codelineno-48-19"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="nf">Domain1Impl2</span><span class="p">(</span><span class="n">IDao1</span><span class="w"> </span><span class="n">dao1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-48-20" name="__codelineno-48-20"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">dao1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dao1</span><span class="p">;</span>
 <a id="__codelineno-48-21" name="__codelineno-48-21"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-48-22" name="__codelineno-48-22"></a>
-<a id="__codelineno-48-23" name="__codelineno-48-23"></a><span class="w">     </span><span class="c1">// we do something in the [domain] layer</span>
+<a id="__codelineno-48-23" name="__codelineno-48-23"></a><span class="w">     </span><span class="c1">// realiza-se alguma ação na camada [domain]</span>
 <a id="__codelineno-48-24" name="__codelineno-48-24"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">doSomethingInDomainLayer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-48-25" name="__codelineno-48-25"></a><span class="w">    </span><span class="n">a</span><span class="o">--</span><span class="p">;</span>
 <a id="__codelineno-48-26" name="__codelineno-48-26"></a><span class="w">    </span><span class="n">b</span><span class="o">--</span><span class="p">;</span>
@@ -2376,19 +2382,19 @@
 <a id="__codelineno-50-7" name="__codelineno-50-7"></a><span class="cm"> *  </span>
 <a id="__codelineno-50-8" name="__codelineno-50-8"></a><span class="cm"> */</span>
 <a id="__codelineno-50-9" name="__codelineno-50-9"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Control1Impl1</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">IControl1</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-50-10" name="__codelineno-50-10"></a><span class="w">   </span><span class="c1">// business class in layer [domain]</span>
+<a id="__codelineno-50-10" name="__codelineno-50-10"></a><span class="w">   </span><span class="c1">// classe de negócio na camada [domain]</span>
 <a id="__codelineno-50-11" name="__codelineno-50-11"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">IDomain1</span><span class="w"> </span><span class="n">domain1</span><span class="p">;</span>
 <a id="__codelineno-50-12" name="__codelineno-50-12"></a>
 <a id="__codelineno-50-13" name="__codelineno-50-13"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="nf">Control1Impl1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-50-14" name="__codelineno-50-14"></a><span class="w">     </span><span class="c1">// constructor with no arguments</span>
+<a id="__codelineno-50-14" name="__codelineno-50-14"></a><span class="w">     </span><span class="c1">// construtor sem argumentos</span>
 <a id="__codelineno-50-15" name="__codelineno-50-15"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-50-16" name="__codelineno-50-16"></a>
-<a id="__codelineno-50-17" name="__codelineno-50-17"></a><span class="w">     </span><span class="c1">// domain] layer access service enhancement</span>
+<a id="__codelineno-50-17" name="__codelineno-50-17"></a><span class="w">     </span><span class="c1">// memorização do serviço de acesso à camada [domain]</span>
 <a id="__codelineno-50-18" name="__codelineno-50-18"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="nf">Control1Impl1</span><span class="p">(</span><span class="n">IDomain1</span><span class="w"> </span><span class="n">domain1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-50-19" name="__codelineno-50-19"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">domain1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">domain1</span><span class="p">;</span>
 <a id="__codelineno-50-20" name="__codelineno-50-20"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-50-21" name="__codelineno-50-21"></a>
-<a id="__codelineno-50-22" name="__codelineno-50-22"></a><span class="w">     </span><span class="c1">// we&#39;re doing something</span>
+<a id="__codelineno-50-22" name="__codelineno-50-22"></a><span class="w">     </span><span class="c1">// faz-se alguma coisa</span>
 <a id="__codelineno-50-23" name="__codelineno-50-23"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">doSometingInControlLayer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-50-24" name="__codelineno-50-24"></a><span class="w">    </span><span class="n">a</span><span class="o">++</span><span class="p">;</span>
 <a id="__codelineno-50-25" name="__codelineno-50-25"></a><span class="w">    </span><span class="n">b</span><span class="o">++</span><span class="p">;</span>
@@ -2437,19 +2443,19 @@
 <a id="__codelineno-51-8" name="__codelineno-51-8"></a><span class="cm"> */</span>
 <a id="__codelineno-51-9" name="__codelineno-51-9"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Control1Impl2</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">IControl1</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-51-10" name="__codelineno-51-10"></a>
-<a id="__codelineno-51-11" name="__codelineno-51-11"></a><span class="w">     </span><span class="c1">// the [domain] layer access class</span>
+<a id="__codelineno-51-11" name="__codelineno-51-11"></a><span class="w">     </span><span class="c1">// a classe de acesso à camada [domain]</span>
 <a id="__codelineno-51-12" name="__codelineno-51-12"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">IDomain1</span><span class="w"> </span><span class="n">domain1</span><span class="p">;</span>
 <a id="__codelineno-51-13" name="__codelineno-51-13"></a>
 <a id="__codelineno-51-14" name="__codelineno-51-14"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="nf">Control1Impl2</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-51-15" name="__codelineno-51-15"></a><span class="w">     </span><span class="c1">// constructor with no arguments</span>
+<a id="__codelineno-51-15" name="__codelineno-51-15"></a><span class="w">     </span><span class="c1">// construtor sem argumentos</span>
 <a id="__codelineno-51-16" name="__codelineno-51-16"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-51-17" name="__codelineno-51-17"></a>
-<a id="__codelineno-51-18" name="__codelineno-51-18"></a><span class="w">     </span><span class="c1">// stores the [domain] layer access class</span>
+<a id="__codelineno-51-18" name="__codelineno-51-18"></a><span class="w">     </span><span class="c1">// armazena a classe de acesso à camada [domain]</span>
 <a id="__codelineno-51-19" name="__codelineno-51-19"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="nf">Control1Impl2</span><span class="p">(</span><span class="n">IDomain1</span><span class="w"> </span><span class="n">domain1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-51-20" name="__codelineno-51-20"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">domain1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">domain1</span><span class="p">;</span>
 <a id="__codelineno-51-21" name="__codelineno-51-21"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-51-22" name="__codelineno-51-22"></a>
-<a id="__codelineno-51-23" name="__codelineno-51-23"></a><span class="w">     </span><span class="c1">// we&#39;re doing something</span>
+<a id="__codelineno-51-23" name="__codelineno-51-23"></a><span class="w">     </span><span class="c1">// faz-se alguma coisa</span>
 <a id="__codelineno-51-24" name="__codelineno-51-24"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">doSometingInControlLayer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-51-25" name="__codelineno-51-25"></a><span class="w">    </span><span class="n">a</span><span class="o">--</span><span class="p">;</span>
 <a id="__codelineno-51-26" name="__codelineno-51-26"></a><span class="w">    </span><span class="n">b</span><span class="o">--</span><span class="p">;</span>
@@ -2458,7 +2464,7 @@
 <a id="__codelineno-51-29" name="__codelineno-51-29"></a>
 <a id="__codelineno-51-30" name="__codelineno-51-30"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h4 id="2465-spring-ficheiros-de-configuracao">2.4.6.5. <span style="color: #4f81bd"><strong><em><span style="color: #4f81bd">[Spring] Ficheiros de configuração</span></em></strong></span></h4>
+<h4 id="2465-os-ficheiros-de-configuracao-spring">2.4.6.5. <span style="color: #4f81bd">Os ficheiros de configuração [Spring]</span></h4>
 <p>Um primeiro [springMainTest1.xml]:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-52-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-52-2"> 2</a></span>
@@ -2481,16 +2487,16 @@
 <span class="normal"><a href="#__codelineno-52-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <a id="__codelineno-52-2" name="__codelineno-52-2"></a><span class="cp">&lt;!DOCTYPE beans SYSTEM &quot;http://www.springframework.org/dtd/spring-beans.dtd&quot;&gt;</span>
 <a id="__codelineno-52-3" name="__codelineno-52-3"></a><span class="nt">&lt;beans&gt;</span>
-<a id="__codelineno-52-4" name="__codelineno-52-4"></a><span class="w">     </span><span class="cm">&lt;!-- the dao class --&gt;</span>
+<a id="__codelineno-52-4" name="__codelineno-52-4"></a><span class="w">     </span><span class="cm">&lt;!-- a classe DAO --&gt;</span>
 <a id="__codelineno-52-5" name="__codelineno-52-5"></a><span class="w">    </span><span class="nt">&lt;bean</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;dao&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;istia.st.demo.dao.Dao1Impl1&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-52-6" name="__codelineno-52-6"></a><span class="w">    </span><span class="nt">&lt;/bean&gt;</span>
-<a id="__codelineno-52-7" name="__codelineno-52-7"></a><span class="w">     </span><span class="cm">&lt;!-- the trade class --&gt;</span>
+<a id="__codelineno-52-7" name="__codelineno-52-7"></a><span class="w">     </span><span class="cm">&lt;!-- a classe de negócio --&gt;</span>
 <a id="__codelineno-52-8" name="__codelineno-52-8"></a><span class="w">    </span><span class="nt">&lt;bean</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;domain&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;istia.st.demo.domain.Domain1Impl1&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-52-9" name="__codelineno-52-9"></a><span class="w">        </span><span class="nt">&lt;constructor-arg</span><span class="w"> </span><span class="na">index=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-52-10" name="__codelineno-52-10"></a><span class="w">            </span><span class="nt">&lt;ref</span><span class="w"> </span><span class="na">bean=</span><span class="s">&quot;dao&quot;</span><span class="nt">/&gt;</span>
 <a id="__codelineno-52-11" name="__codelineno-52-11"></a><span class="w">        </span><span class="nt">&lt;/constructor-arg&gt;</span>
 <a id="__codelineno-52-12" name="__codelineno-52-12"></a><span class="w">    </span><span class="nt">&lt;/bean&gt;</span>
-<a id="__codelineno-52-13" name="__codelineno-52-13"></a><span class="w">     </span><span class="cm">&lt;!-- the control class --&gt;</span>
+<a id="__codelineno-52-13" name="__codelineno-52-13"></a><span class="w">     </span><span class="cm">&lt;!-- a classe de controlo --&gt;</span>
 <a id="__codelineno-52-14" name="__codelineno-52-14"></a><span class="w">    </span><span class="nt">&lt;bean</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;control&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;istia.st.demo.control.Control1Impl1&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-52-15" name="__codelineno-52-15"></a><span class="w">        </span><span class="nt">&lt;constructor-arg</span><span class="w"> </span><span class="na">index=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-52-16" name="__codelineno-52-16"></a><span class="w">            </span><span class="nt">&lt;ref</span><span class="w"> </span><span class="na">bean=</span><span class="s">&quot;domain&quot;</span><span class="nt">/&gt;</span>
@@ -2520,16 +2526,16 @@
 <span class="normal"><a href="#__codelineno-53-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <a id="__codelineno-53-2" name="__codelineno-53-2"></a><span class="cp">&lt;!DOCTYPE beans SYSTEM &quot;http://www.springframework.org/dtd/spring-beans.dtd&quot;&gt;</span>
 <a id="__codelineno-53-3" name="__codelineno-53-3"></a><span class="nt">&lt;beans&gt;</span>
-<a id="__codelineno-53-4" name="__codelineno-53-4"></a><span class="w">     </span><span class="cm">&lt;!-- the dao class --&gt;</span>
+<a id="__codelineno-53-4" name="__codelineno-53-4"></a><span class="w">     </span><span class="cm">&lt;!-- a classe DAO --&gt;</span>
 <a id="__codelineno-53-5" name="__codelineno-53-5"></a><span class="w">    </span><span class="nt">&lt;bean</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;dao&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;istia.st.demo.dao.Dao1Impl2&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-53-6" name="__codelineno-53-6"></a><span class="w">    </span><span class="nt">&lt;/bean&gt;</span>
-<a id="__codelineno-53-7" name="__codelineno-53-7"></a><span class="w">     </span><span class="cm">&lt;!-- the trade class --&gt;</span>
+<a id="__codelineno-53-7" name="__codelineno-53-7"></a><span class="w">     </span><span class="cm">&lt;!-- a classe de negócio --&gt;</span>
 <a id="__codelineno-53-8" name="__codelineno-53-8"></a><span class="w">    </span><span class="nt">&lt;bean</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;domain&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;istia.st.demo.domain.Domain1Impl2&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-53-9" name="__codelineno-53-9"></a><span class="w">        </span><span class="nt">&lt;constructor-arg</span><span class="w"> </span><span class="na">index=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-53-10" name="__codelineno-53-10"></a><span class="w">            </span><span class="nt">&lt;ref</span><span class="w"> </span><span class="na">bean=</span><span class="s">&quot;dao&quot;</span><span class="nt">/&gt;</span>
 <a id="__codelineno-53-11" name="__codelineno-53-11"></a><span class="w">        </span><span class="nt">&lt;/constructor-arg&gt;</span>
 <a id="__codelineno-53-12" name="__codelineno-53-12"></a><span class="w">    </span><span class="nt">&lt;/bean&gt;</span>
-<a id="__codelineno-53-13" name="__codelineno-53-13"></a><span class="w">     </span><span class="cm">&lt;!-- the control class --&gt;</span>
+<a id="__codelineno-53-13" name="__codelineno-53-13"></a><span class="w">     </span><span class="cm">&lt;!-- a classe de controlo --&gt;</span>
 <a id="__codelineno-53-14" name="__codelineno-53-14"></a><span class="w">    </span><span class="nt">&lt;bean</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;control&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;istia.st.demo.control.Control1Impl2&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-53-15" name="__codelineno-53-15"></a><span class="w">        </span><span class="nt">&lt;constructor-arg</span><span class="w"> </span><span class="na">index=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>
 <a id="__codelineno-53-16" name="__codelineno-53-16"></a><span class="w">            </span><span class="nt">&lt;ref</span><span class="w"> </span><span class="na">bean=</span><span class="s">&quot;domain&quot;</span><span class="nt">/&gt;</span>
@@ -2537,8 +2543,8 @@
 <a id="__codelineno-53-18" name="__codelineno-53-18"></a><span class="w">    </span><span class="nt">&lt;/bean&gt;</span>
 <a id="__codelineno-53-19" name="__codelineno-53-19"></a><span class="nt">&lt;/beans&gt;</span>
 </code></pre></div></td></tr></table></div>
-<h4 id="2466-o-pacote-de-testes-istiastdemotests">2.4.6.6. <span style="color: #4f81bd"><strong><em><span style="color: #4f81bd">O pacote de testes [istia.st.demo.tests]</span></em></strong></span></h4>
-<p>Um teste [principal]:</p>
+<h4 id="2466-o-pacote-de-testes-istiastdemotests">2.4.6.6. <span style="color: #4f81bd">O pacote de testes [istia.st.demo.tests]</span></h4>
+<p>Um teste do tipo [main]:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-54-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-54-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-54-3"> 3</a></span>
@@ -2574,18 +2580,18 @@
 <a id="__codelineno-54-11" name="__codelineno-54-11"></a><span class="cm"> */</span>
 <a id="__codelineno-54-12" name="__codelineno-54-12"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MainTest1</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-54-13" name="__codelineno-54-13"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">arguments</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-54-14" name="__codelineno-54-14"></a><span class="w">     </span><span class="c1">// we retrieve an implementation of the IControl1 interface</span>
+<a id="__codelineno-54-14" name="__codelineno-54-14"></a><span class="w">     </span><span class="c1">// recupera-se uma implementação da interface IControl1</span>
 <a id="__codelineno-54-15" name="__codelineno-54-15"></a><span class="w">    </span><span class="n">IControl1</span><span class="w"> </span><span class="n">control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">IControl1</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">XmlBeanFactory</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ClassPathResource</span><span class="p">(</span>
 <a id="__codelineno-54-16" name="__codelineno-54-16"></a><span class="w">        </span><span class="s">&quot;springMainTest1.xml&quot;</span><span class="p">))).</span><span class="na">getBean</span><span class="p">(</span><span class="s">&quot;control&quot;</span><span class="p">);</span>
-<a id="__codelineno-54-17" name="__codelineno-54-17"></a><span class="w">     </span><span class="c1">// we use the</span>
+<a id="__codelineno-54-17" name="__codelineno-54-17"></a><span class="w">     </span><span class="c1">// utiliza-se a classe</span>
 <a id="__codelineno-54-18" name="__codelineno-54-18"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
 <a id="__codelineno-54-19" name="__codelineno-54-19"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">control</span><span class="p">.</span><span class="na">doSometingInControlLayer</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
-<a id="__codelineno-54-20" name="__codelineno-54-20"></a><span class="w">     </span><span class="c1">// the result is displayed</span>
+<a id="__codelineno-54-20" name="__codelineno-54-20"></a><span class="w">     </span><span class="c1">// exibe-se o resultado</span>
 <a id="__codelineno-54-21" name="__codelineno-54-21"></a><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;control(&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;)=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
 <a id="__codelineno-54-22" name="__codelineno-54-22"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-54-23" name="__codelineno-54-23"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>Resultados apresentados na consola do Eclipse:</p>
+<p>Os resultados obtidos na consola do Eclipse:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-55-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-55-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-55-3"> 3</a></span>
@@ -2646,18 +2652,18 @@
 <a id="__codelineno-56-10" name="__codelineno-56-10"></a><span class="cm"> */</span>
 <a id="__codelineno-56-11" name="__codelineno-56-11"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MainTest2</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-56-12" name="__codelineno-56-12"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">arguments</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-56-13" name="__codelineno-56-13"></a><span class="w">     </span><span class="c1">// we retrieve an implementation of the IControl1 interface</span>
+<a id="__codelineno-56-13" name="__codelineno-56-13"></a><span class="w">     </span><span class="c1">// recupera-se uma implementação da interface IControl1</span>
 <a id="__codelineno-56-14" name="__codelineno-56-14"></a><span class="w">    </span><span class="n">IControl1</span><span class="w"> </span><span class="n">control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">IControl1</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">XmlBeanFactory</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ClassPathResource</span><span class="p">(</span>
 <a id="__codelineno-56-15" name="__codelineno-56-15"></a><span class="w">        </span><span class="s">&quot;springMainTest2.xml&quot;</span><span class="p">))).</span><span class="na">getBean</span><span class="p">(</span><span class="s">&quot;control&quot;</span><span class="p">);</span>
-<a id="__codelineno-56-16" name="__codelineno-56-16"></a><span class="w">     </span><span class="c1">// we use the</span>
+<a id="__codelineno-56-16" name="__codelineno-56-16"></a><span class="w">     </span><span class="c1">// utiliza-se a classe</span>
 <a id="__codelineno-56-17" name="__codelineno-56-17"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
 <a id="__codelineno-56-18" name="__codelineno-56-18"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">control</span><span class="p">.</span><span class="na">doSometingInControlLayer</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
-<a id="__codelineno-56-19" name="__codelineno-56-19"></a><span class="w">     </span><span class="c1">// the result is displayed</span>
+<a id="__codelineno-56-19" name="__codelineno-56-19"></a><span class="w">     </span><span class="c1">// exibe-se o resultado</span>
 <a id="__codelineno-56-20" name="__codelineno-56-20"></a><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;control(&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;)=&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
 <a id="__codelineno-56-21" name="__codelineno-56-21"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-56-22" name="__codelineno-56-22"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>Resultados apresentados na consola do Eclipse:</p>
+<p>Resultados obtidos na consola do Eclipse:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-57-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-57-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-57-3"> 3</a></span>
@@ -2684,7 +2690,7 @@
 <a id="__codelineno-57-12" name="__codelineno-57-12"></a><span class="n">INFO</span><span class="p">:</span> <span class="n">Bean</span> <span class="s1">&#39;control&#39;</span> <span class="n">instantiated</span> <span class="n">via</span> <span class="n">constructor</span> <span class="p">[</span><span class="n">public</span> <span class="n">istia</span><span class="o">.</span><span class="n">st</span><span class="o">.</span><span class="n">demo</span><span class="o">.</span><span class="n">control</span><span class="o">.</span><span class="n">Control1Impl2</span><span class="p">(</span><span class="n">istia</span><span class="o">.</span><span class="n">st</span><span class="o">.</span><span class="n">demo</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">IDomain1</span><span class="p">)]</span>
 <a id="__codelineno-57-13" name="__codelineno-57-13"></a><span class="n">control</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span><span class="o">=-</span><span class="mi">10</span>
 </code></pre></div></td></tr></table></div>
-<p>Por fim, um teste JUnit:</p>
+<p>Por fim, um teste Junit:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-58-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-58-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-58-3"> 3</a></span>
@@ -2726,60 +2732,60 @@
 <a id="__codelineno-58-11" name="__codelineno-58-11"></a><span class="cm"> */</span>
 <a id="__codelineno-58-12" name="__codelineno-58-12"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">JunitTest2Control1</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">TestCase</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-58-13" name="__codelineno-58-13"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testControl1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-58-14" name="__codelineno-58-14"></a><span class="w">     </span><span class="c1">// we retrieve an implementation of the IControl1 interface</span>
+<a id="__codelineno-58-14" name="__codelineno-58-14"></a><span class="w">     </span><span class="c1">// recupera-se uma implementação da interface IControl1</span>
 <a id="__codelineno-58-15" name="__codelineno-58-15"></a><span class="w">    </span><span class="n">IControl1</span><span class="w"> </span><span class="n">control1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">IControl1</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">XmlBeanFactory</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ClassPathResource</span><span class="p">(</span>
 <a id="__codelineno-58-16" name="__codelineno-58-16"></a><span class="w">        </span><span class="s">&quot;springMainTest1.xml&quot;</span><span class="p">))).</span><span class="na">getBean</span><span class="p">(</span><span class="s">&quot;control&quot;</span><span class="p">);</span>
-<a id="__codelineno-58-17" name="__codelineno-58-17"></a><span class="w">     </span><span class="c1">// we use the</span>
+<a id="__codelineno-58-17" name="__codelineno-58-17"></a><span class="w">     </span><span class="c1">// utiliza-se a classe</span>
 <a id="__codelineno-58-18" name="__codelineno-58-18"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">b1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
 <a id="__codelineno-58-19" name="__codelineno-58-19"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">res1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">control1</span><span class="p">.</span><span class="na">doSometingInControlLayer</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">b1</span><span class="p">);</span>
 <a id="__codelineno-58-20" name="__codelineno-58-20"></a><span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="mi">34</span><span class="p">,</span><span class="w"> </span><span class="n">res1</span><span class="p">);</span>
-<a id="__codelineno-58-21" name="__codelineno-58-21"></a><span class="w">     </span><span class="c1">// we retrieve another implementation of the IControl1 interface</span>
+<a id="__codelineno-58-21" name="__codelineno-58-21"></a><span class="w">     </span><span class="c1">// recupera-se outra implementação da interface IControl1</span>
 <a id="__codelineno-58-22" name="__codelineno-58-22"></a><span class="w">    </span><span class="n">IControl1</span><span class="w"> </span><span class="n">control2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">IControl1</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">XmlBeanFactory</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ClassPathResource</span><span class="p">(</span>
 <a id="__codelineno-58-23" name="__codelineno-58-23"></a><span class="w">        </span><span class="s">&quot;springMainTest2.xml&quot;</span><span class="p">))).</span><span class="na">getBean</span><span class="p">(</span><span class="s">&quot;control&quot;</span><span class="p">);</span>
-<a id="__codelineno-58-24" name="__codelineno-58-24"></a><span class="w">     </span><span class="c1">// we use the</span>
+<a id="__codelineno-58-24" name="__codelineno-58-24"></a><span class="w">     </span><span class="c1">// utiliza-se a classe</span>
 <a id="__codelineno-58-25" name="__codelineno-58-25"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">b2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
 <a id="__codelineno-58-26" name="__codelineno-58-26"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">res2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">control2</span><span class="p">.</span><span class="na">doSometingInControlLayer</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="n">b2</span><span class="p">);</span>
 <a id="__codelineno-58-27" name="__codelineno-58-27"></a><span class="w">    </span><span class="n">assertEquals</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">res2</span><span class="p">);</span>
 <a id="__codelineno-58-28" name="__codelineno-58-28"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-58-29" name="__codelineno-58-29"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="25-conclusao">2.5. <span style="color: #4f81bd">Conclusão</span></h2>
-<p>O framework Spring oferece verdadeira flexibilidade tanto na arquitetura da aplicação como na configuração. Utilizámos o conceito de IoC, um dos dois pilares do Spring. O outro pilar é o AOP (Programação Orientada a Aspetos), que não abordámos. Permite adicionar «comportamento» a um método de classe através da configuração, sem modificar o código do método. Em termos simples, o AOP permite filtrar chamadas a determinados métodos:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000003F2000000C77329320D.png" width="505" height="100" style="display:inline-block; margin:4px;width:13.361cm;height:2.633cm;" class="odt-zoomable" data-zoom-src="images/10000000000003F2000000C77329320D.png" /></td></tr></table>
+<h2 id="25-conclusion">2.5. <span style="color: #4f81bd">Conclusion</span></h2>
+<p>O framework Spring permite uma verdadeira flexibilidade, tanto na arquitetura das aplicações como na sua configuração. Utilizámos o conceito IoC, um dos dois pilares do Spring. O outro pilar é o AOP (Programação Orientada a Aspectos), que não apresentámos. Permite adicionar, através da configuração, «comportamento» a um método de uma classe sem alterar o código da mesma. De forma esquemática, o AOP permite filtrar as chamadas a determinados métodos:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000003F2000000C77329320D.png" width="505" height="100" style="display:inline-block; margin:4px;width:13.361cm;height:2.633cm;" class="odt-zoomable" data-zoom-src="images/10000000000003F2000000C77329320D.png" /></td></tr></table>
 
 <ul>
-  <li>o filtro pode ser executado antes ou depois do método alvo M, ou ambos.
+  <li>o filtro pode ser executado antes ou depois do método M alvo, ou em ambos os casos.
   </li>
-  <li>O método M não tem conhecimento destes filtros. Estes são definidos no ficheiro de configuração do Spring.
+  <li>O método M ignora a existência destes filtros. Estes são definidos no ficheiro de configuração do Spring.
   </li>
-  <li>O código do método M não é modificado. Os filtros são classes Java que devem ser implementadas. O Spring fornece filtros predefinidos, particularmente para a gestão de transações DBMS.
+  <li>O código do método M não é alterado. Os filtros são classes Java a serem criadas. O Spring fornece filtros predefinidos, nomeadamente para gerir as transações do SGBD.
   </li>
   <li>Os filtros são beans e, como tal, são definidos no ficheiro de configuração do Spring como beans.
   </li>
 </ul>
 
-<p>Um filtro comum é o filtro de transação. Considere um método M na camada de negócios que realiza duas operações inseparáveis sobre os dados (uma unidade de trabalho). Ele chama dois métodos, M1 e M2, na camada DAO para realizar essas duas operações.</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000231000001018A4A6B06.png" width="281" height="129" style="display:inline-block; margin:4px;width:7.422cm;height:3.401cm;" class="odt-zoomable" data-zoom-src="images/1000000000000231000001018A4A6B06.png" /></td></tr></table>
+<p>Um filtro comum é o filtro transacional. Consideremos um método M da camada de negócio que realiza duas operações indissociáveis sobre dados (unidade de trabalho). Este método recorre a dois métodos, M1 e M2, da camada DAO para realizar essas duas operações.</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000231000001018A4A6B06.png" width="281" height="129" style="display:inline-block; margin:4px;width:7.422cm;height:3.401cm;" class="odt-zoomable" data-zoom-src="images/1000000000000231000001018A4A6B06.png" /></td></tr></table>
 
-<p>Por residir na camada de negócios, o método M abstrai o armazenamento de dados subjacente. Por exemplo, não precisa de assumir que os dados estão armazenados num SGBD ou que deve incluir as chamadas aos métodos M1 e M2 dentro de uma transação do SGBD. Cabe à camada DAO tratar destes detalhes. Uma solução para o problema anterior é criar um método na camada DAO que, por sua vez, chame os métodos M1 e M2, envolvendo essas chamadas numa transação do SGBD.</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000034300000139582C97DF.png" width="418" height="157" style="display:inline-block; margin:4px;width:11.047cm;height:4.142cm;" class="odt-zoomable" data-zoom-src="images/100000000000034300000139582C97DF.png" /></td></tr></table>
+<p>Por se encontrar na camada de negócio, o método M ignora o suporte destes dados. Não tem, por exemplo, de partir do princípio de que os dados se encontram num SGBD e de que precisa de colocar as duas chamadas aos métodos M1 e M2 no âmbito de uma transação de SGBD. Cabe à camada DAO tratar desses detalhes. Uma solução para o problema anterior consiste, então, em criar um método na camada DAO que, por sua vez, chamasse os métodos M1 e M2, chamadas que incluiria numa transação de SGBD.</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000034300000139582C97DF.png" width="418" height="157" style="display:inline-block; margin:4px;width:11.047cm;height:4.142cm;" class="odt-zoomable" data-zoom-src="images/100000000000034300000139582C97DF.png" /></td></tr></table>
 
-<p>A solução de filtragem AOP é mais flexível. Permite-lhe definir um filtro que, antes de chamar M, iniciará uma transação e, após a chamada, executará um commit ou um rollback, conforme apropriado.</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/1000000000000540000000DEF56BFCBF.png" width="672" height="111" style="display:inline-block; margin:4px;width:17.78cm;height:2.937cm;" class="odt-zoomable" data-zoom-src="images/1000000000000540000000DEF56BFCBF.png" /></td></tr></table>
+<p>A solução de filtragem AOP é mais flexível. Permite definir um filtro que, antes da chamada de M, iniciará uma transação e, após a chamada, executará um commit ou um rollback, conforme o caso.</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000540000000DEF56BFCBF.png" width="672" height="111" style="display:inline-block; margin:4px;width:17.78cm;height:2.937cm;" class="odt-zoomable" data-zoom-src="images/1000000000000540000000DEF56BFCBF.png" /></td></tr></table>
 
 <p>Esta abordagem apresenta várias vantagens:</p>
 <ul>
-  <li>uma vez definido o filtro, este pode ser aplicado a vários métodos, por exemplo, todos aqueles que requerem uma transação
+  <li>uma vez definido o filtro, este pode ser aplicado a vários métodos, por exemplo, todos aqueles que necessitam de uma transação
   </li>
-  <li>os métodos filtrados não precisam de ser reescritos
+  <li>os métodos assim filtrados não precisam de ser reescritos
   </li>
-  <li>uma vez que os filtros a utilizar são definidos através da configuração, podem ser alterados
+  <li>os filtros a utilizar são definidos por configuração, pelo que podem ser alterados
   </li>
 </ul>
 
-<p>Para além dos conceitos de IoC e AOP, o Spring fornece inúmeras classes de suporte para aplicações de três camadas:</p>
+<p>Para além dos conceitos IoC e AOP, o Spring disponibiliza várias classes de suporte para aplicações de três camadas:</p>
 <ul>
-  <li>para JDBC, SQLMap (iBatis), Hibernate e JDO (Java Data Object) na camada DAO
+  <li>para JDBC, SqlMap (iBatis), Hibernate, JDO (Java Data Object) na camada DAO
   </li>
   <li>para o modelo MVC na camada de Interface do Utilizador
   </li>
